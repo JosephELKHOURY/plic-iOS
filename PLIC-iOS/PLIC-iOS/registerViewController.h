@@ -12,4 +12,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtName;
 @property (strong, nonatomic) IBOutlet UITextView *txtDescription;
 
+-(IBAction)cancel;
+
 @end

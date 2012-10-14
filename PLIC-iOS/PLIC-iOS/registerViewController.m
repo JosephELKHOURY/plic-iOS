@@ -27,9 +27,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
 
-    self.navigationController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(Add:)];
-
+-(IBAction)cancel
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
