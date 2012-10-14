@@ -18,6 +18,7 @@
 		6E2D4B8B15F7847200FEAFB2 /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D4B8A15F7847200FEAFB2 /* FacebookViewController.m */; };
 		6E2D4B8D15F7855800FEAFB2 /* FacebookLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E2D4B8C15F7855800FEAFB2 /* FacebookLoginView.xib */; };
 		6E2D4B9015F7975700FEAFB2 /* FacebookShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D4B8F15F7975700FEAFB2 /* FacebookShareViewController.m */; };
+		6E458DF4162B5F76001982C0 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E458DF3162B5F76001982C0 /* registerViewController.m */; };
 		6E6D1CE815B0AEEC0084D2FF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D1CE715B0AEEC0084D2FF /* CFNetwork.framework */; };
 		6E6D1D2915B0B7320084D2FF /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D1D1E15B0B6AD0084D2FF /* libRestKit.a */; };
 		6E6D1D2C15B0B7AF0084D2FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D1D2B15B0B7AF0084D2FF /* SystemConfiguration.framework */; };
@@ -459,6 +460,8 @@
 		6E2D4B8C15F7855800FEAFB2 /* FacebookLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookLoginView.xib; sourceTree = "<group>"; };
 		6E2D4B8E15F7975700FEAFB2 /* FacebookShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShareViewController.h; sourceTree = "<group>"; };
 		6E2D4B8F15F7975700FEAFB2 /* FacebookShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShareViewController.m; sourceTree = "<group>"; };
+		6E458DF2162B5F76001982C0 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
+		6E458DF3162B5F76001982C0 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		6E6D1CE715B0AEEC0084D2FF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6E6D1D1215B0B6AD0084D2FF /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = Restkit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		6E6D1D2B15B0B7AF0084D2FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1024,6 +1027,8 @@
 				6E2D4B8715F77EE600FEAFB2 /* FacebookLoginViewController.m */,
 				6E2D4B8E15F7975700FEAFB2 /* FacebookShareViewController.h */,
 				6E2D4B8F15F7975700FEAFB2 /* FacebookShareViewController.m */,
+				6E458DF2162B5F76001982C0 /* registerViewController.h */,
+				6E458DF3162B5F76001982C0 /* registerViewController.m */,
 				6EC7579215A07EFE00687754 /* Resources */,
 				6EC7590315A07F0100687754 /* Supporting Files */,
 			);
@@ -1964,6 +1969,7 @@
 				6E2D4B9015F7975700FEAFB2 /* FacebookShareViewController.m in Sources */,
 				6EFAF2321610C31C006DD094 /* Bonus.m in Sources */,
 				B3F139B8161B1A04006D3F3A /* MapHud.m in Sources */,
+				6E458DF4162B5F76001982C0 /* registerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

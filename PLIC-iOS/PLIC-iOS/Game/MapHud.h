@@ -27,6 +27,9 @@
     CCMenu *unitMenu;
     CCMenuItem *endTurnItem;
     CCMenuItem *waitTurnItem;
+    CCMenuItem *warriorItem;
+    CCMenuItem *knightItem;
+    CCMenuItem *boomerangItem;
     UnitStatsLayer *unitStats;
     CCLabelTTF *status;
     id<MapDelegate> delegate;
@@ -38,6 +41,9 @@
 @property (nonatomic, retain) CCMenu *unitMenu;
 @property (nonatomic, retain) CCMenuItem *endTurnItem;
 @property (nonatomic, retain) CCMenuItem *waitTurnItem;
+@property (nonatomic, retain) CCMenuItem *warriorItem;
+@property (nonatomic, retain) CCMenuItem *knightItem;
+@property (nonatomic, retain) CCMenuItem *boomerangItem;
 @property (nonatomic, retain) UnitStatsLayer *unitStats;
 @property (nonatomic, retain) CCLabelTTF *status;
 @property (nonatomic, retain) id<MapDelegate> delegate;

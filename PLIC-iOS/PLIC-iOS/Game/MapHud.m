@@ -11,6 +11,7 @@
 @implementation MapHud
 
 @synthesize radioMenu, mainMenu, unitMenu, endTurnItem, waitTurnItem;
+@synthesize warriorItem, knightItem, boomerangItem;
 @synthesize unitStats;
 @synthesize unitPosition;
 @synthesize status;
@@ -33,7 +34,9 @@
         
         CCMenuItem *settingsItem = [CCMenuItemImage itemWithNormalImage:@"setting.png" selectedImage:@"settingSel.png" target:self selector:@selector(goSettings)];
         
-        mainMenu = [CCMenu menuWithItems: settingsItem, backItem, nil];
+        CCMenuItemLabel *showUnitsItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Units" fontName:@"Arial" fontSize:12] target:self selector:@selector(showUnits)];
+        
+        mainMenu = [CCMenu menuWithItems: showUnitsItem, settingsItem, backItem, nil];
         [mainMenu alignItemsVerticallyWithPadding:0];
         
         CCMenuItem *menuItem = [CCMenuItemImage
@@ -49,9 +52,9 @@
         [self addChild:mainMenu];
         [self addChild:mMenu];
         
-        CCMenuItem *warriorItem = [CCMenuItemImage itemWithNormalImage:@"warriorButton.png" selectedImage:@"warriorButtonSel.png" target:self selector:@selector(placeWarrior)];
-        CCMenuItem *knightItem = [CCMenuItemImage itemWithNormalImage:@"horsemanButton.png" selectedImage:@"horsemanButtonSel.png" target:self selector:@selector(placeKnight)];
-        CCMenuItem *boomerangItem = [CCMenuItemImage itemWithNormalImage:@"boomerangButton.png" selectedImage:@"boomerangButtonSel.png" target:self selector:@selector(placeBoomerang)];
+        warriorItem = [CCMenuItemImage itemWithNormalImage:@"warriorButton.png" selectedImage:@"warriorButtonSel.png" target:self selector:@selector(placeWarrior)];
+        knightItem = [CCMenuItemImage itemWithNormalImage:@"horsemanButton.png" selectedImage:@"horsemanButtonSel.png" target:self selector:@selector(placeKnight)];
+        boomerangItem = [CCMenuItemImage itemWithNormalImage:@"boomerangButton.png" selectedImage:@"boomerangButtonSel.png" target:self selector:@selector(placeBoomerang)];
         
         unitMenu = [CCMenu menuWithItems: warriorItem, knightItem, boomerangItem, nil];
         [unitMenu alignItemsVertically];
@@ -94,6 +97,12 @@
         [delegate deselectEligibleTileAtPosition:unitPosition];
     }
     [unitMenu setVisible:NO];
+}
+
+-(void)showUnits
+{
+    [mainMenu setVisible:NO];
+    [mMenu setVisible:YES];
 }
 
 - (void)showMenu

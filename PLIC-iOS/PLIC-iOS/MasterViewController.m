@@ -61,7 +61,10 @@
         player.Knight = p.Knight;
         player.Boomerang = p.Boomerang;
     }
-    NSLog(@"Warriors: %d", player.Warrior);
+    //JUST FOR TESTING WITHOUT A SERVER
+    player.Warrior = 3;
+    player.Knight = 2;
+    player.Boomerang = 2;
     NSLog(@"setPlayer: Done");
 }
 
@@ -73,6 +76,7 @@
 								   pixelFormat:kEAGLColorFormatRGB565];
     [self.view insertSubview:glView atIndex:10];
     [[CCDirector sharedDirector] setView:glView];
+    [self setPlayer];
     [[CCDirector sharedDirector] runWithScene:[Map scene:player]];
 }
 

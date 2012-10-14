@@ -146,6 +146,8 @@
         [self highlightEligiblePositions:@"Player1Eligible1"];
         [self highlightEligiblePositions:@"Player1Eligible2"];
         [self highlightEligiblePositions:@"Player1Eligible3"];
+        
+        [self checkUnitsAvailability];
     }
     return self;
 }
@@ -155,6 +157,15 @@
     [self setViewpointCenter:_player.position];
 }
 
+- (void)checkUnitsAvailability
+{
+    if (player1.Warrior == 0)
+        self.hud.warriorItem.visible = NO;
+    if (player1.Knight == 0)
+        self.hud.knightItem.visible = NO;
+    if (player1.Boomerang == 0)
+        self.hud.boomerangItem.visible = NO;
+}
 
 -(Unit *)createUnitOfType:(NSString *)type AtX:(int)x Y:(int)y forPlayer:(int)player
 {
@@ -200,6 +211,8 @@
     else
         [player2 addUnit:unit];*/
     [currentPlayer addUnit:unit];
+    
+    [self checkUnitsAvailability];
     
     return unit;
 }
@@ -478,8 +491,9 @@
 
 -(void) attackWith:(Unit *)player Against:(Unit *)enemy
 {
-    [self.battleScene startBattleWith:player Against:enemy];
-    return;
+    //BATTLE SCENE
+    //[self.battleScene startBattleWith:player Against:enemy];
+    //return;
     
     enemy.hp -= player.attack;
     player.state = HASATTACKED;
@@ -565,6 +579,7 @@
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
+                [self.hud showUnitStats:unit];
                 if (self.player != nil && self.player.state != HASATTACKED)
                 {
                     if ([self isSpriteInArray:attackingTiles atPos:unit.position])
