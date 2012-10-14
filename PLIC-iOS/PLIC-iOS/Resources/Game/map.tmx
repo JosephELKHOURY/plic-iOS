@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="9" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="terrains" tilewidth="50" tileheight="50" spacing="1" margin="1">
+  <image source="terrains.jpg" width="407" height="305"/>
+  <tile id="2">
+   <properties>
+    <property name="Type" value="Montagne"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Type" value="Montagne"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="Type" value="Riviere"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="20" height="9">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA3WS2wrDIBBEJYbQvkhbELqJNFb//x+7wixMF/Nw2MS9jZPEEEIEu7IqRamKICZlUd7IDTr1ReobzxnxoNqbcnecyHXsPtDXiQq+SsOZQEumHQvNKMiJu5PtEbDi/aE8lRf1Wyw0X9yODl01/OvM0Ofr8+S+7Ofw+XPBSfOT6/eajEK+pYmP9p1n/u7O00xxo31C9TO/28SHRrkNWE2GVvOVdbGWcW7/iv2DY/YPQ+EVgNACAAA=
+  </data>
+ </layer>
+ <layer name="Meta" width="20" height="9">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NmYGBghmJCgB+Nz8yAqZcZjYYBDiDmRMPyWOwgxh3Y3DLYALnuQw8jfGE1UICNymaRax5yWoOxAbnOCj3QAgAA
+  </data>
+ </layer>
+ <objectgroup name="PlayersPos" width="20" height="9">
+  <object x="559" y="141" height="1"/>
+  <object name="Player1Eligible1" x="11" y="84" width="273" height="145"/>
+  <object name="Player1Eligible2" x="150" y="8" width="144" height="64"/>
+  <object name="Player1Eligible3" x="109" y="305" width="177" height="135"/>
+ </objectgroup>
+</map>
