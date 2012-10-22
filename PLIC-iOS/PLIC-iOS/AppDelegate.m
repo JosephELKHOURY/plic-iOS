@@ -83,7 +83,24 @@
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	//[director_ pushScene: [HelloWorldLayer scene]];
-
+    
+    //CREATE THE UDID (IF DOESN'T EXIST) AND STORE IT IN USER DEFAULTS
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *UUID = @"";
+    
+    if (![defaults valueForKey:@"UUID"])
+    {
+        CFUUIDRef UUIDRef = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef UUIDSRef = CFUUIDCreateString(kCFAllocatorDefault, UUIDRef);
+        UUID = [NSString stringWithFormat:@"%@", UUIDSRef];
+        
+        [defaults setObject:UUID forKey:@"UUID"];
+    }
+    else {
+        UUID = [defaults valueForKey:@"UUID"];
+    }
+    /////////////////////////
+    
 	return YES;
 }
 

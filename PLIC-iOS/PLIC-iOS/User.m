@@ -10,7 +10,7 @@
 
 @implementation User
 
-@synthesize UDID;
+@synthesize UUID;
 @synthesize description;
 @synthesize id;
 @synthesize username;

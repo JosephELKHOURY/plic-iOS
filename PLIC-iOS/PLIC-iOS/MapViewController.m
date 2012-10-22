@@ -26,7 +26,7 @@
     
     for (User *u in self.rest.data)
     {
-        if ([u.UDID isEqualToString:[[UIDevice currentDevice] uniqueIdentifier]])
+        if ([u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
             restUser = u;
             found = YES;
@@ -50,7 +50,7 @@
         }
         else 
         {
-            u.UDID = [[UIDevice currentDevice] uniqueIdentifier];
+            u.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
             u.username = @"Joseph";
             u.description = @"EPIMAC iPad";
             u.latitude = [NSString stringWithFormat:@"%f", workingCoordinate.latitude];
@@ -71,7 +71,7 @@
     
     for (User *u in self.rest.data)
     {
-        if (![u.UDID isEqualToString:[[UIDevice currentDevice] uniqueIdentifier]])
+        if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
             workingCoordinate.latitude = [u.latitude doubleValue];
             workingCoordinate.longitude = [u.longitude doubleValue];
@@ -214,7 +214,7 @@
     
     for (User *u in self.rest.data)
     {
-        if (![u.UDID isEqualToString:[[UIDevice currentDevice] uniqueIdentifier]])
+        if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
             double latitude = [u.latitude doubleValue];
             double longitude = [u.longitude doubleValue];

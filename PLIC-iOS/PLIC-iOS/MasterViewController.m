@@ -34,6 +34,10 @@
     self.rest = [RestKitController getInstance];
     self.rest.masterDelegate = self;
     [self.rest setupMappingAndRoutes];
+    // CHECK IF USER IS REGISTERED
+    // GET ALL USERS AND CHECK FOR UUID
+    // IF EXISTS, DO NOTHING
+    // IF NOT, OPEN RegisterViewController
     [self getPlayerFromServer];
  	// Do any additional setup after loading the view, typically from a nib.
 }
