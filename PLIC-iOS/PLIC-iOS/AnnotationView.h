@@ -1,5 +1,5 @@
 //
-//  iCodeBlogAnnotationView.h
+//  AnnotationView.h
 //  maps
 //
 //  Created by Ghady Rayess on 6/28/10.
@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "iCodeBlogAnnotation.h"
-#import"iCodeBlogAnnotationView.h"
+#import "Annotation.h"
+#import "AnnotationView.h"
 
-@interface iCodeBlogAnnotationView : MKAnnotationView {
+@interface AnnotationView : MKAnnotationView {
 	UIImageView *imageView;
 }
 @property(nonatomic) UIImageView *imageView;

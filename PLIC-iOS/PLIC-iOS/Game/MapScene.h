@@ -1,3 +1,6 @@
+#import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
+
 #import "cocos2d.h"
 #import "MapHud.h"
 #import "UnitStatsLayer.h"
@@ -7,7 +10,7 @@
 
 @class RestKitController;
 
-@interface Map : CCLayer <MapDelegate>
+@interface Map : CCLayer <MapDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, UIAlertViewDelegate>
 {
     CCTMXTiledMap *_tileMap;
     CCTMXLayer *_background;

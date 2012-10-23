@@ -7,12 +7,15 @@
 //
 
 #import "cocos2d.h"
+#import "CCMenuAdvanced.h"
 #import "UnitStatsLayer.h"
 #import "Unit.h"
+#import "UnitListLayer.h"
 
 @protocol MapDelegate <NSObject>
 
 -(void)endTurn;
+-(NSMutableArray *) getCurrentPlayerUnitList;
 -(Unit *)createUnitOfType:(NSString *)type AtPosition:(CGPoint)p forPlayer:(int)player;
 -(void)deselectEligibleTiles;
 -(void)deselectEligibleTileAtPosition:(CGPoint)pos;
@@ -31,6 +34,7 @@
     CCMenuItem *knightItem;
     CCMenuItem *boomerangItem;
     UnitStatsLayer *unitStats;
+    UnitListLayer *unitListLayer;
     CCLabelTTF *status;
     id<MapDelegate> delegate;
     CGPoint unitPosition;
@@ -45,6 +49,7 @@
 @property (nonatomic, retain) CCMenuItem *knightItem;
 @property (nonatomic, retain) CCMenuItem *boomerangItem;
 @property (nonatomic, retain) UnitStatsLayer *unitStats;
+@property (nonatomic, retain) UnitListLayer *unitListLayer;
 @property (nonatomic, retain) CCLabelTTF *status;
 @property (nonatomic, retain) id<MapDelegate> delegate;
 @property (nonatomic) CGPoint unitPosition;
@@ -57,6 +62,6 @@
 -(void) showMenu;
 -(void) goBack;
 -(void) goSettings;
--(void)showUnitMenuWithPosition:(CGPoint)p;
+-(void) showUnitMenuWithPosition:(CGPoint)p;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation MapHud
 
-@synthesize radioMenu, mainMenu, unitMenu, endTurnItem, waitTurnItem;
+@synthesize radioMenu, mainMenu, unitMenu, unitListLayer, endTurnItem, waitTurnItem;
 @synthesize warriorItem, knightItem, boomerangItem;
 @synthesize unitStats;
 @synthesize unitPosition;
@@ -38,6 +38,7 @@
         
         mainMenu = [CCMenu menuWithItems: showUnitsItem, settingsItem, backItem, nil];
         [mainMenu alignItemsVerticallyWithPadding:0];
+       
         
         CCMenuItem *menuItem = [CCMenuItemImage
                                 itemWithNormalImage:@"menuButton.png" selectedImage:@"menuButtonSel.png"
@@ -62,8 +63,25 @@
         [unitMenu setPosition:point];
         [self addChild:unitMenu];
         unitMenu.visible = NO;
+        
+        [self setupUnitListMenu];
     }
     return self;
+}
+
+- (void)setupUnitListMenu
+{
+    self.unitListLayer = [[UnitListLayer alloc] init];
+}
+
+-(void)showUnits
+{
+    NSMutableArray *unitList = [delegate getCurrentPlayerUnitList];
+    [self.unitListLayer refreshForUnitList:unitList];
+    
+    CCScene *scene = [CCScene node];
+	[scene addChild: self.unitListLayer];
+	[[CCDirector sharedDirector] pushScene: scene];
 }
 
 - (void)showUnitMenuWithPosition:(CGPoint)p
@@ -99,11 +117,6 @@
     [unitMenu setVisible:NO];
 }
 
--(void)showUnits
-{
-    [mainMenu setVisible:NO];
-    [mMenu setVisible:YES];
-}
 
 - (void)showMenu
 {
@@ -181,6 +194,7 @@
 - (void)waitButtonTapped:(id)sender
 {
 }
+
 @end
 
 

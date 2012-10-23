@@ -1,5 +1,13 @@
 #import "MapScene.h"
 
+typedef enum {
+	kStateStartGame,
+	kStatePicker,
+	kStateMultiplayer,
+	kStateMultiplayerCointoss,
+	kStateMultiplayerReconnect
+} gameStates;
+
 @implementation Map
 
 @synthesize tileMap = _tileMap;
@@ -487,6 +495,11 @@
         }
     }
     return NO;
+}
+
+-(NSMutableArray *) getCurrentPlayerUnitList
+{
+    return player1.units;
 }
 
 -(void) attackWith:(Unit *)player Against:(Unit *)enemy

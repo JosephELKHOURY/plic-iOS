@@ -1,15 +1,15 @@
 //
-//  iCodeBlogAnnotation.m
+//  Annotation.m
 //  maps
 //
 //  Created by Ghady Rayess on 6/28/10.
 //  Copyright 2010 FOO. All rights reserved.
 //
 
-#import "iCodeBlogAnnotation.h"
+#import "Annotation.h"
 
 
-@implementation iCodeBlogAnnotation
+@implementation Annotation
 @synthesize coordinate,title,subtitle,annotationType;
 -init{
 	return self;

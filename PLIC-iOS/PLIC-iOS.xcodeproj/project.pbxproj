@@ -310,8 +310,8 @@
 		6EC75B6315A0809900687754 /* ShortestPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B5915A0809900687754 /* ShortestPath.m */; };
 		6EC75B6515A0809900687754 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B5D15A0809900687754 /* Unit.m */; };
 		6EC75B6615A0809900687754 /* UnitStatsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B5F15A0809900687754 /* UnitStatsLayer.m */; };
-		6EC75B7A15A080BC00687754 /* iCodeBlogAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B6815A080BC00687754 /* iCodeBlogAnnotation.m */; };
-		6EC75B7B15A080BC00687754 /* iCodeBlogAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B6A15A080BC00687754 /* iCodeBlogAnnotationView.m */; };
+		6EC75B7A15A080BC00687754 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B6815A080BC00687754 /* Annotation.m */; };
+		6EC75B7B15A080BC00687754 /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B6A15A080BC00687754 /* AnnotationView.m */; };
 		6EC75B7C15A080BC00687754 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B6C15A080BC00687754 /* MapViewController.m */; };
 		6EC75B7D15A080BC00687754 /* MyCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC75B6E15A080BC00687754 /* MyCLController.m */; };
 		6EC75B7E15A080BC00687754 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EC75B6F15A080BC00687754 /* MainStoryboard.storyboard */; };
@@ -340,6 +340,7 @@
 		B3404D63161B54990087D39C /* BattleScene.h in Headers */ = {isa = PBXBuildFile; fileRef = B3404D61161B54990087D39C /* BattleScene.h */; };
 		B3404D64161B54990087D39C /* BattleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B3404D62161B54990087D39C /* BattleScene.m */; };
 		B3404D6A161B56530087D39C /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = B3404D69161B56520087D39C /* Background.png */; };
+		B3993CC616301DB6007C2298 /* MapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3993CC516301DB6007C2298 /* MapLayer.m */; };
 		B39F8F88161B8F1C00C0295E /* big_bowman_left_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B39F8F7C161B8F1C00C0295E /* big_bowman_left_blue.png */; };
 		B39F8F89161B8F1C00C0295E /* big_bowman_left_red.png in Resources */ = {isa = PBXBuildFile; fileRef = B39F8F7D161B8F1C00C0295E /* big_bowman_left_red.png */; };
 		B39F8F8A161B8F1C00C0295E /* big_bowman_right_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B39F8F7E161B8F1C00C0295E /* big_bowman_right_blue.png */; };
@@ -352,6 +353,8 @@
 		B39F8F91161B8F1C00C0295E /* big_horseman_left_red.png in Resources */ = {isa = PBXBuildFile; fileRef = B39F8F85161B8F1C00C0295E /* big_horseman_left_red.png */; };
 		B39F8F92161B8F1C00C0295E /* big_horseman_right_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B39F8F86161B8F1C00C0295E /* big_horseman_right_blue.png */; };
 		B39F8F93161B8F1C00C0295E /* big_horseman_right_red.png in Resources */ = {isa = PBXBuildFile; fileRef = B39F8F87161B8F1C00C0295E /* big_horseman_right_red.png */; };
+		B3EB886D1635841800243CA5 /* UnitListLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EB886C1635841800243CA5 /* UnitListLayer.m */; };
+		B3EB88731635886000243CA5 /* CCMenuAdvanced.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EB88721635886000243CA5 /* CCMenuAdvanced.m */; };
 		B3F139A5161B147C006D3F3A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139A4161B147C006D3F3A /* Icon@2x.png */; };
 		B3F139A7161B14F9006D3F3A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139A6161B14F9006D3F3A /* Default.png */; };
 		B3F139A9161B14FF006D3F3A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139A8161B14FF006D3F3A /* Default@2x.png */; };
@@ -782,10 +785,10 @@
 		6EC75B5D15A0809900687754 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Unit.m; path = Game/Unit.m; sourceTree = "<group>"; };
 		6EC75B5E15A0809900687754 /* UnitStatsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitStatsLayer.h; path = Game/UnitStatsLayer.h; sourceTree = "<group>"; };
 		6EC75B5F15A0809900687754 /* UnitStatsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitStatsLayer.m; path = Game/UnitStatsLayer.m; sourceTree = "<group>"; };
-		6EC75B6715A080BC00687754 /* iCodeBlogAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCodeBlogAnnotation.h; sourceTree = "<group>"; };
-		6EC75B6815A080BC00687754 /* iCodeBlogAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCodeBlogAnnotation.m; sourceTree = "<group>"; };
-		6EC75B6915A080BC00687754 /* iCodeBlogAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCodeBlogAnnotationView.h; sourceTree = "<group>"; };
-		6EC75B6A15A080BC00687754 /* iCodeBlogAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCodeBlogAnnotationView.m; sourceTree = "<group>"; };
+		6EC75B6715A080BC00687754 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		6EC75B6815A080BC00687754 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		6EC75B6915A080BC00687754 /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
+		6EC75B6A15A080BC00687754 /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
 		6EC75B6B15A080BC00687754 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		6EC75B6C15A080BC00687754 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6EC75B6D15A080BC00687754 /* MyCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCLController.h; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 		B3404D61161B54990087D39C /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BattleScene.h; path = Game/BattleScene.h; sourceTree = "<group>"; };
 		B3404D62161B54990087D39C /* BattleScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BattleScene.m; path = Game/BattleScene.m; sourceTree = "<group>"; };
 		B3404D69161B56520087D39C /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = Resources/Game/Background.png; sourceTree = "<group>"; };
+		B3993CC416301DB6007C2298 /* MapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLayer.h; path = Game/MapLayer.h; sourceTree = "<group>"; };
+		B3993CC516301DB6007C2298 /* MapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapLayer.m; path = Game/MapLayer.m; sourceTree = "<group>"; };
 		B39F8F7C161B8F1C00C0295E /* big_bowman_left_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_bowman_left_blue.png; sourceTree = "<group>"; };
 		B39F8F7D161B8F1C00C0295E /* big_bowman_left_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_bowman_left_red.png; sourceTree = "<group>"; };
 		B39F8F7E161B8F1C00C0295E /* big_bowman_right_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_bowman_right_blue.png; sourceTree = "<group>"; };
@@ -833,6 +838,10 @@
 		B39F8F85161B8F1C00C0295E /* big_horseman_left_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_horseman_left_red.png; sourceTree = "<group>"; };
 		B39F8F86161B8F1C00C0295E /* big_horseman_right_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_horseman_right_blue.png; sourceTree = "<group>"; };
 		B39F8F87161B8F1C00C0295E /* big_horseman_right_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_horseman_right_red.png; sourceTree = "<group>"; };
+		B3EB886B1635841800243CA5 /* UnitListLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitListLayer.h; sourceTree = "<group>"; };
+		B3EB886C1635841800243CA5 /* UnitListLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitListLayer.m; sourceTree = "<group>"; };
+		B3EB88711635885F00243CA5 /* CCMenuAdvanced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuAdvanced.h; sourceTree = "<group>"; };
+		B3EB88721635886000243CA5 /* CCMenuAdvanced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuAdvanced.m; sourceTree = "<group>"; };
 		B3F139A4161B147C006D3F3A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		B3F139A6161B14F9006D3F3A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		B3F139A8161B14FF006D3F3A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
@@ -992,10 +1001,10 @@
 				6EC7592215A07F4700687754 /* libs */,
 				6EC7590715A07F0100687754 /* AppDelegate.h */,
 				6EC7590815A07F0100687754 /* AppDelegate.m */,
-				6EC75B6715A080BC00687754 /* iCodeBlogAnnotation.h */,
-				6EC75B6815A080BC00687754 /* iCodeBlogAnnotation.m */,
-				6EC75B6915A080BC00687754 /* iCodeBlogAnnotationView.h */,
-				6EC75B6A15A080BC00687754 /* iCodeBlogAnnotationView.m */,
+				6EC75B6715A080BC00687754 /* Annotation.h */,
+				6EC75B6815A080BC00687754 /* Annotation.m */,
+				6EC75B6915A080BC00687754 /* AnnotationView.h */,
+				6EC75B6A15A080BC00687754 /* AnnotationView.m */,
 				6EC75B6B15A080BC00687754 /* MapViewController.h */,
 				6EC75B6C15A080BC00687754 /* MapViewController.m */,
 				6EC75B6D15A080BC00687754 /* MyCLController.h */,
@@ -1433,6 +1442,8 @@
 			children = (
 				B3404D61161B54990087D39C /* BattleScene.h */,
 				B3404D62161B54990087D39C /* BattleScene.m */,
+				B3EB88711635885F00243CA5 /* CCMenuAdvanced.h */,
+				B3EB88721635886000243CA5 /* CCMenuAdvanced.m */,
 				B3F139B6161B1A04006D3F3A /* MapHud.h */,
 				B3F139B7161B1A04006D3F3A /* MapHud.m */,
 				6EC75B5415A0809900687754 /* MapScene.h */,
@@ -1445,6 +1456,10 @@
 				6EC75B5D15A0809900687754 /* Unit.m */,
 				6EC75B5E15A0809900687754 /* UnitStatsLayer.h */,
 				6EC75B5F15A0809900687754 /* UnitStatsLayer.m */,
+				B3EB886B1635841800243CA5 /* UnitListLayer.h */,
+				B3EB886C1635841800243CA5 /* UnitListLayer.m */,
+				B3993CC416301DB6007C2298 /* MapLayer.h */,
+				B3993CC516301DB6007C2298 /* MapLayer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1951,8 +1966,8 @@
 				6EC75B6315A0809900687754 /* ShortestPath.m in Sources */,
 				6EC75B6515A0809900687754 /* Unit.m in Sources */,
 				6EC75B6615A0809900687754 /* UnitStatsLayer.m in Sources */,
-				6EC75B7A15A080BC00687754 /* iCodeBlogAnnotation.m in Sources */,
-				6EC75B7B15A080BC00687754 /* iCodeBlogAnnotationView.m in Sources */,
+				6EC75B7A15A080BC00687754 /* Annotation.m in Sources */,
+				6EC75B7B15A080BC00687754 /* AnnotationView.m in Sources */,
 				6EC75B7C15A080BC00687754 /* MapViewController.m in Sources */,
 				6EC75B7D15A080BC00687754 /* MyCLController.m in Sources */,
 				6EC75B7F15A080BC00687754 /* MasterViewController.m in Sources */,
@@ -1970,6 +1985,9 @@
 				6EFAF2321610C31C006DD094 /* Bonus.m in Sources */,
 				B3F139B8161B1A04006D3F3A /* MapHud.m in Sources */,
 				6E458DF4162B5F76001982C0 /* registerViewController.m in Sources */,
+				B3993CC616301DB6007C2298 /* MapLayer.m in Sources */,
+				B3EB886D1635841800243CA5 /* UnitListLayer.m in Sources */,
+				B3EB88731635886000243CA5 /* CCMenuAdvanced.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2140,8 +2158,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2165,8 +2183,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = parisk;
-				PROVISIONING_PROFILE = "4661BF00-4036-41DC-8BFE-292D46A39BF1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C594AF6-150C-4DF3-A338-85F5C3D7F521";
+				PROVISIONING_PROFILE = "061457E6-7667-480F-897E-947A34819191";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "061457E6-7667-480F-897E-947A34819191";
 				USER_HEADER_SEARCH_PATHS = $SRCROOT;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2179,8 +2197,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2202,8 +2220,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = parisk;
-				PROVISIONING_PROFILE = "4661BF00-4036-41DC-8BFE-292D46A39BF1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C594AF6-150C-4DF3-A338-85F5C3D7F521";
+				PROVISIONING_PROFILE = "061457E6-7667-480F-897E-947A34819191";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "061457E6-7667-480F-897E-947A34819191";
 				USER_HEADER_SEARCH_PATHS = $SRCROOT;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
