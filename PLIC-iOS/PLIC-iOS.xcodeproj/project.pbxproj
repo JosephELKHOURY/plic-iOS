@@ -337,6 +337,7 @@
 		6EC75C0215A08A1E00687754 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC75C0115A08A1D00687754 /* CoreData.framework */; };
 		6EC75C0415A08A3A00687754 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC75C0315A08A3A00687754 /* MapKit.framework */; };
 		6EFAF2321610C31C006DD094 /* Bonus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAF2311610C31C006DD094 /* Bonus.m */; };
+		B31BD78E1636F5D600FA142F /* inscription.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B31BD78D1636F5D600FA142F /* inscription.jpg */; };
 		B3404D63161B54990087D39C /* BattleScene.h in Headers */ = {isa = PBXBuildFile; fileRef = B3404D61161B54990087D39C /* BattleScene.h */; };
 		B3404D64161B54990087D39C /* BattleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B3404D62161B54990087D39C /* BattleScene.m */; };
 		B3404D6A161B56530087D39C /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = B3404D69161B56520087D39C /* Background.png */; };
@@ -824,6 +825,8 @@
 		6EC75C0315A08A3A00687754 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6EFAF2301610C31C006DD094 /* Bonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bonus.h; sourceTree = "<group>"; };
 		6EFAF2311610C31C006DD094 /* Bonus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bonus.m; sourceTree = "<group>"; };
+		B31BD77F1636EE7A00FA142F /* Burbin Casual NC.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Burbin Casual NC.ttf"; sourceTree = "<group>"; };
+		B31BD78D1636F5D600FA142F /* inscription.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inscription.jpg; sourceTree = "<group>"; };
 		B3404D61161B54990087D39C /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BattleScene.h; path = Game/BattleScene.h; sourceTree = "<group>"; };
 		B3404D62161B54990087D39C /* BattleScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BattleScene.m; path = Game/BattleScene.m; sourceTree = "<group>"; };
 		B3404D69161B56520087D39C /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = Resources/Game/Background.png; sourceTree = "<group>"; };
@@ -1056,6 +1059,8 @@
 		6EC7579215A07EFE00687754 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B31BD78D1636F5D600FA142F /* inscription.jpg */,
+				B31BD77F1636EE7A00FA142F /* Burbin Casual NC.ttf */,
 				B39DEA581636E03B00195149 /* debrief.png */,
 				B39DEA561636DB9600195149 /* army.png */,
 				CE006892161C91F600020652 /* bgFB.png */,
@@ -1954,6 +1959,7 @@
 				CE006895161C98F100020652 /* Default.png in Resources */,
 				B39DEA571636DB9600195149 /* army.png in Resources */,
 				B39DEA591636E03B00195149 /* debrief.png in Resources */,
+				B31BD78E1636F5D600FA142F /* inscription.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
