@@ -15,8 +15,11 @@
 }
 
 @property (strong, nonatomic) User *user;
-@property (strong, nonatomic) IBOutlet UITextField *txtName;
-@property (strong, nonatomic) IBOutlet UITextView *txtDescription;
+@property (strong, nonatomic) IBOutlet UILabel *txtName;
+@property (strong, nonatomic) IBOutlet UILabel *txtDescription;
+@property (strong, nonatomic) IBOutlet UIButton *btnSave;
+
+- (IBAction)updateInfo:(id)sender;
 - (IBAction)saveInfo:(id)sender;
 
 @end

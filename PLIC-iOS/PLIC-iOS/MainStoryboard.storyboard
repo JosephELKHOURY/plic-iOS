@@ -408,34 +408,28 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Betadine Warrior" minimumFontSize="17" id="vvb-cZ-OM0">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Betadine Warrior" minimumFontSize="17" id="vvb-cZ-OM0">
                                 <rect key="frame" x="67" y="43" width="306" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Hamster terror" id="ljB-VJ-6g3">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Hamster terror" id="ljB-VJ-6g3">
                                 <rect key="frame" x="67" y="103" width="306" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.73628535579999999" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="87x-R2-1Eg">
-                                <rect key="frame" x="153" y="214" width="115" height="44"/>
+                                <rect key="frame" x="170" y="214" width="100" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Sauvegarder">
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <state key="normal" title="Modifier">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveInfo:" destination="3hb-YX-ZOf" eventType="touchUpInside" id="Xax-aP-kox"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -443,6 +437,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BWP-Ah-b3S"/>
                     <connections>
+                        <outlet property="btnSave" destination="87x-R2-1Eg" id="YPw-fi-Pqi"/>
                         <outlet property="txtDescription" destination="ljB-VJ-6g3" id="Nh9-1u-cQ9"/>
                         <outlet property="txtName" destination="vvb-cZ-OM0" id="T2f-8x-2bt"/>
                     </connections>
@@ -692,8 +687,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserInfoViewController.h"/>
             <relationships>
                 <relationship kind="action" name="saveInfo:"/>
-                <relationship kind="outlet" name="txtDescription" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="txtName" candidateClass="UITextField"/>
+                <relationship kind="action" name="updateInfo:"/>
+                <relationship kind="outlet" name="btnSave" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="txtDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtName" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

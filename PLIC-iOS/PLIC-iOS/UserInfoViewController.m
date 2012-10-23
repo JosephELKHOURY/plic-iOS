@@ -27,9 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     self.txtName.text = user.username;
     self.txtDescription.text = user.description;
-	// Do any additional setup after loading the view.
+    [self.btnSave addTarget:self action:@selector(updateInfo:) forControlEvents:UIControlEventTouchUpInside];
+    self.txtName.textColor = [UIColor lightGrayColor];
+    self.txtDescription.textColor = [UIColor lightGrayColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,10 +55,35 @@
 - (void)viewDidUnload {
     [self setTxtName:nil];
     [self setTxtDescription:nil];
+    [self setBtnSave:nil];
     [super viewDidUnload];
 }
+
+-(IBAction)updateInfo:(id)sender
+{
+    self.txtName.enabled = YES;
+    self.txtName.textColor = [UIColor blackColor];
+    self.txtDescription.enabled = YES;
+    self.txtDescription.textColor = [UIColor blackColor];
+    [self.btnSave removeTarget:self action:@selector(updateInfo:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnSave addTarget:self action:@selector(saveInfo:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnSave setTitle:@"Sauvegarder" forState:UIControlStateNormal];
+}
+
 - (IBAction)saveInfo:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    self.txtName.enabled = NO;
+    self.txtName.textColor = [UIColor lightGrayColor];
+    self.txtDescription.enabled = NO;
+    self.txtDescription.textColor = [UIColor lightGrayColor];
+    
+    user.username = self.txtName.text;
+    user.description = self.txtDescription.text;
+    //TODO UDPDATE INFO: SEND TO SERVER
+    
+    [self.btnSave removeTarget:self action:@selector(saveInfo:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnSave addTarget:self action:@selector(updateInfo:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnSave setTitle:@"Modifier" forState:UIControlStateNormal];
 }
+
 @end
