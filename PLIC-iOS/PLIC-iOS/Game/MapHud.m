@@ -25,7 +25,7 @@
         [radioMenu alignItemsHorizontally];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        CGPoint point = ccp(winSize.width - 50, 30);
+        CGPoint point = ccp(winSize.width - 55, 20);
         [radioMenu setPosition:point];
         
         [self addChild:radioMenu];
@@ -34,9 +34,10 @@
         
         CCMenuItem *settingsItem = [CCMenuItemImage itemWithNormalImage:@"setting.png" selectedImage:@"settingSel.png" target:self selector:@selector(goSettings)];
         
-        CCMenuItemLabel *showUnitsItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Units" fontName:@"Arial" fontSize:12] target:self selector:@selector(showUnits)];
+        //CCMenuItemLabel *showUnitsItem = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Units" fontName:@"Arial" fontSize:12] target:self selector:@selector(showUnits)];
         
-        mainMenu = [CCMenu menuWithItems: showUnitsItem, settingsItem, backItem, nil];
+        //showUnitsItem,
+        mainMenu = [CCMenu menuWithItems:  settingsItem, backItem, nil];
         [mainMenu alignItemsVerticallyWithPadding:0];
        
         
@@ -45,10 +46,11 @@
                                 target:self selector:@selector(showMenu)];
         mMenu = [CCMenu menuWithItems: menuItem, nil];
         
-        
-        point = ccp(50, 30);
+        point = ccp(winSize.width / 2, winSize.height / 2);
         [mainMenu setPosition:point];
         [mainMenu setVisible:NO];
+        
+        point = ccp(50, 20);
         [mMenu setPosition:point];
         [self addChild:mainMenu];
         [self addChild:mMenu];
