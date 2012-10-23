@@ -393,6 +393,7 @@
 		CE006893161C91F700020652 /* bgFB.png in Resources */ = {isa = PBXBuildFile; fileRef = CE006892161C91F600020652 /* bgFB.png */; };
 		CE006895161C98F100020652 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CE006894161C98F100020652 /* Default.png */; };
 		CE03570515A222E500F1A0FC /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE03570415A222E500F1A0FC /* RulesViewController.m */; };
+		CE4015DE1636E00700314CC5 /* inscription.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE4015DD1636E00700314CC5 /* inscription.jpg */; };
 		CEB8D32615B5BA4600980368 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8D32315B5BA4600980368 /* selected.png */; };
 		CEB8D33815B5BDD100980368 /* potential.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8D33615B5BDD100980368 /* potential.png */; };
 		CEB8D33915B5BDD100980368 /* attack.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8D33715B5BDD100980368 /* attack.png */; };
@@ -882,6 +883,7 @@
 		CE006894161C98F100020652 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CE03570315A222E500F1A0FC /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
 		CE03570415A222E500F1A0FC /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
+		CE4015DD1636E00700314CC5 /* inscription.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = inscription.jpg; path = ../../../../../../Desktop/inscription.jpg; sourceTree = "<group>"; };
 		CEB8D32315B5BA4600980368 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = Resources/selected.png; sourceTree = "<group>"; };
 		CEB8D33615B5BDD100980368 /* potential.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = potential.png; path = Resources/potential.png; sourceTree = "<group>"; };
 		CEB8D33715B5BDD100980368 /* attack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attack.png; path = Resources/attack.png; sourceTree = "<group>"; };
@@ -1058,6 +1060,7 @@
 				6E2CF6BC15A2FB56009CD18C /* apropos.jpg */,
 				6E2CF6BD15A2FB56009CD18C /* regles.jpg */,
 				CE006876161C6CE500020652 /* FB.png */,
+				CE4015DD1636E00700314CC5 /* inscription.jpg */,
 				CE006878161C6CFB00020652 /* panneau_apropos.png */,
 				CEBADAA715B56E4700A8728A /* retour.png */,
 				CED74F2D15A230C800764133 /* panneau_regle.png */,
@@ -1941,6 +1944,7 @@
 				CE006891161C90D700020652 /* loginFB.png in Resources */,
 				CE006893161C91F700020652 /* bgFB.png in Resources */,
 				CE006895161C98F100020652 /* Default.png in Resources */,
+				CE4015DE1636E00700314CC5 /* inscription.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
