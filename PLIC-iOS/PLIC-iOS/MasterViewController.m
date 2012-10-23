@@ -53,6 +53,8 @@
 {
     player = [[User alloc] createPlayer:1];
     //TODO GET FROM SERVER
+    player.username = @"josephelk";
+    player.description = @"combattant tres fort";
     [self.rest getUnitsOfUser:(int)player.UUID];
 }
 
@@ -81,6 +83,15 @@
     [[CCDirector sharedDirector] setView:glView];
     [self setPlayer];
     [[CCDirector sharedDirector] runWithScene:[Map scene:player]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"pushToUserInfo"])
+    {
+        UserInfoViewController *userInfoViewController = [segue destinationViewController];
+        userInfoViewController.user = player;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated

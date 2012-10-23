@@ -18,7 +18,7 @@
 		6E2D4B8B15F7847200FEAFB2 /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D4B8A15F7847200FEAFB2 /* FacebookViewController.m */; };
 		6E2D4B8D15F7855800FEAFB2 /* FacebookLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E2D4B8C15F7855800FEAFB2 /* FacebookLoginView.xib */; };
 		6E2D4B9015F7975700FEAFB2 /* FacebookShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2D4B8F15F7975700FEAFB2 /* FacebookShareViewController.m */; };
-		6E458DF4162B5F76001982C0 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E458DF3162B5F76001982C0 /* registerViewController.m */; };
+		6E458DF4162B5F76001982C0 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E458DF3162B5F76001982C0 /* RegisterViewController.m */; };
 		6E6D1CE815B0AEEC0084D2FF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D1CE715B0AEEC0084D2FF /* CFNetwork.framework */; };
 		6E6D1D2915B0B7320084D2FF /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D1D1E15B0B6AD0084D2FF /* libRestKit.a */; };
 		6E6D1D2C15B0B7AF0084D2FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D1D2B15B0B7AF0084D2FF /* SystemConfiguration.framework */; };
@@ -408,6 +408,8 @@
 		DCDD08A31636EE1300325EF3 /* CCMenuItemLabelAndImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */; };
 		DCDD08A51636EFC600325EF3 /* bouton_vide.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A41636EFC600325EF3 /* bouton_vide.png */; };
 		DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A61636F18000325EF3 /* bouton_videSel.png */; };
+		DCDD08B71636FA4100325EF3 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD08B61636FA4100325EF3 /* UserInfoViewController.m */; };
+		DCDD08B91636FB6200325EF3 /* chateau.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08B81636FB6200325EF3 /* chateau.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -470,8 +472,8 @@
 		6E2D4B8C15F7855800FEAFB2 /* FacebookLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookLoginView.xib; sourceTree = "<group>"; };
 		6E2D4B8E15F7975700FEAFB2 /* FacebookShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShareViewController.h; sourceTree = "<group>"; };
 		6E2D4B8F15F7975700FEAFB2 /* FacebookShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShareViewController.m; sourceTree = "<group>"; };
-		6E458DF2162B5F76001982C0 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
-		6E458DF3162B5F76001982C0 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
+		6E458DF2162B5F76001982C0 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		6E458DF3162B5F76001982C0 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		6E6D1CE715B0AEEC0084D2FF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6E6D1D1215B0B6AD0084D2FF /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = Restkit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		6E6D1D2B15B0B7AF0084D2FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -908,6 +910,9 @@
 		DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMenuItemLabelAndImage.m; path = Game/CCMenuItemLabelAndImage.m; sourceTree = "<group>"; };
 		DCDD08A41636EFC600325EF3 /* bouton_vide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bouton_vide.png; path = Resources/Game/bouton_vide.png; sourceTree = "<group>"; };
 		DCDD08A61636F18000325EF3 /* bouton_videSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bouton_videSel.png; path = Resources/Game/bouton_videSel.png; sourceTree = "<group>"; };
+		DCDD08B51636FA4100325EF3 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		DCDD08B61636FA4100325EF3 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		DCDD08B81636FB6200325EF3 /* chateau.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chateau.png; path = Resources/chateau.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1055,8 +1060,10 @@
 				6E2D4B8715F77EE600FEAFB2 /* FacebookLoginViewController.m */,
 				6E2D4B8E15F7975700FEAFB2 /* FacebookShareViewController.h */,
 				6E2D4B8F15F7975700FEAFB2 /* FacebookShareViewController.m */,
-				6E458DF2162B5F76001982C0 /* registerViewController.h */,
-				6E458DF3162B5F76001982C0 /* registerViewController.m */,
+				6E458DF2162B5F76001982C0 /* RegisterViewController.h */,
+				6E458DF3162B5F76001982C0 /* RegisterViewController.m */,
+				DCDD08B51636FA4100325EF3 /* UserInfoViewController.h */,
+				DCDD08B61636FA4100325EF3 /* UserInfoViewController.m */,
 				6EC7579215A07EFE00687754 /* Resources */,
 				6EC7590315A07F0100687754 /* Supporting Files */,
 			);
@@ -1066,6 +1073,7 @@
 		6EC7579215A07EFE00687754 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DCDD08B81636FB6200325EF3 /* chateau.png */,
 				B31BD78D1636F5D600FA142F /* inscription.jpg */,
 				B31BD77F1636EE7A00FA142F /* Burbin Casual NC.ttf */,
 				B39DEA581636E03B00195149 /* debrief.png */,
@@ -1973,6 +1981,7 @@
 				B31BD78E1636F5D600FA142F /* inscription.jpg in Resources */,
 				DCDD08A51636EFC600325EF3 /* bouton_vide.png in Resources */,
 				DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */,
+				DCDD08B91636FB6200325EF3 /* chateau.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2016,12 +2025,13 @@
 				6E2D4B9015F7975700FEAFB2 /* FacebookShareViewController.m in Sources */,
 				6EFAF2321610C31C006DD094 /* Bonus.m in Sources */,
 				B3F139B8161B1A04006D3F3A /* MapHud.m in Sources */,
-				6E458DF4162B5F76001982C0 /* registerViewController.m in Sources */,
+				6E458DF4162B5F76001982C0 /* RegisterViewController.m in Sources */,
 				B3993CC616301DB6007C2298 /* MapLayer.m in Sources */,
 				B3EB886D1635841800243CA5 /* UnitListLayer.m in Sources */,
 				B3EB88731635886000243CA5 /* CCMenuAdvanced.m in Sources */,
 				B39DEA5C1636E32200195149 /* DebriefViewController.m in Sources */,
 				DCDD08A31636EE1300325EF3 /* CCMenuItemLabelAndImage.m in Sources */,
+				DCDD08B71636FA4100325EF3 /* UserInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
