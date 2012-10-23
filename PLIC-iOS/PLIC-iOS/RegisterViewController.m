@@ -6,13 +6,13 @@
 //
 //
 
-#import "registerViewController.h"
+#import "RegisterViewController.h"
 
-@interface registerViewController ()
+@interface RegisterViewController ()
 
 @end
 
-@implementation registerViewController
+@implementation RegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +32,14 @@
 -(IBAction)cancel
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)btnRegister:(id)sender
+{
+    User *user = [[User alloc] init];
+    user.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
+    user.username = self.txtName.text;
+    user.description = self.txtDescription.text;
 }
 
 - (void)didReceiveMemoryWarning

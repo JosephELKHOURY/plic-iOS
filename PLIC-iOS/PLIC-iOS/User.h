@@ -11,7 +11,7 @@
 
 @interface User : NSObject
 
-@property (strong, nonatomic) NSString *UDID;
+@property (strong, nonatomic) NSString *UUID;
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSNumber *id;
 @property (strong, nonatomic) NSString *username;

@@ -46,6 +46,22 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
+    //CREATE THE UDID (IF DOESN'T EXIST) AND STORE IT IN USER DEFAULTS
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *UUID = @"";
+    
+    if (![defaults valueForKey:@"UUID"])
+    {
+        CFUUIDRef UUIDRef = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef UUIDSRef = CFUUIDCreateString(kCFAllocatorDefault, UUIDRef);
+        UUID = [NSString stringWithFormat:@"%@", UUIDSRef];
+        
+        [defaults setObject:UUID forKey:@"UUID"];
+    }
+    else {
+        UUID = [defaults valueForKey:@"UUID"];
+    }
+    
 	return YES;
 }
 

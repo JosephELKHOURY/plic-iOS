@@ -27,7 +27,7 @@ static RestKitController* singleton = nil;
     RKObjectManager *manager = [RKObjectManager objectManagerWithBaseURL:[RKURL URLWithBaseURLString:@"http://10.41.163.35:1054/api"]]; 
     
     /*RKObjectMapping* userMapping = [RKObjectMapping mappingForClass:[User class]];
-    [userMapping mapKeyPath:@"UDID" toAttribute:@"UDID"];
+    [userMapping mapKeyPath:@"UUID" toAttribute:@"UUID"];
     [userMapping mapKeyPath:@"description" toAttribute:@"description"];
     [userMapping mapKeyPath:@"username" toAttribute:@"username"];
     [userMapping mapKeyPath:@"id" toAttribute:@"id"];

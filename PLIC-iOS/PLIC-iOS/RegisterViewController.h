@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
-@interface registerViewController : UIViewController
+@interface RegisterViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *txtName;
 @property (strong, nonatomic) IBOutlet UITextView *txtDescription;
 
--(IBAction)cancel;
+- (IBAction)cancel;
+- (IBAction)btnRegister:(id)sender;
 
 @end
