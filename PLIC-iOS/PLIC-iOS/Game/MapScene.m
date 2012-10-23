@@ -25,7 +25,7 @@ typedef enum {
 @synthesize status;
 @synthesize rest;
 
-+(id) scene:(Player *)player
++(id) scene:(User *)player
 {
 	CCScene *scene = [CCScene node];
 
@@ -110,7 +110,7 @@ typedef enum {
         _meta.visible = NO;
         
         //player1 = [[Player alloc] createPlayer:1];
-        player2 = [[Player alloc] createPlayer:2];
+        player2 = [[User alloc] createPlayer:2];
         player2.Warrior = 1;
         [player2 addUnit:[self createUnitOfType:@"Warrior" AtX:7 Y:3 forPlayer:2]];
         
@@ -178,7 +178,7 @@ typedef enum {
 -(Unit *)createUnitOfType:(NSString *)type AtX:(int)x Y:(int)y forPlayer:(int)player
 {
     Unit *unit = nil;
-    Player *currentPlayer = nil;
+    User *currentPlayer = nil;
     
     if (player == 1)
         currentPlayer = player1;

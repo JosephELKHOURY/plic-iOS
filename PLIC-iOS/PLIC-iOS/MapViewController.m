@@ -187,9 +187,9 @@
 								   pixelFormat:kEAGLColorFormatRGB565];
     [self.view insertSubview:glView atIndex:10];
     [[CCDirector sharedDirector] setView:glView];
-    [self.rest getArmies];
-    Player *player = [[Player alloc] createPlayer:1];
-    for (Player *p in self.rest.armies)
+    [self.rest getUnits];
+    User *player = [[User alloc] createPlayer:1];
+    for (User *p in self.rest.units)
     {
         player.Warrior = p.Warrior;
         player.Knight = p.Knight;
