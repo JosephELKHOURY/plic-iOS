@@ -36,6 +36,8 @@ typedef enum {
     [scene addChild: hud];
     layer.hud = hud;
     
+    [layer checkUnitsAvailability];
+    
     BattleScene *battleScene = [BattleScene node];
     [battleScene setVisible:FALSE];
     [scene addChild: battleScene z:50];
@@ -100,7 +102,6 @@ typedef enum {
         //[[SimpleAudioEngine sharedEngine] preloadEffect:@"hit.caf"];
         //[[SimpleAudioEngine sharedEngine] preloadEffect:@"move.caf"];
         //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"TileMap.caf"];
-        
         self.isTouchEnabled = YES;
         
         self.tileMap = [CCTMXTiledMap tiledMapWithTMXFile:@"map.tmx"];
@@ -154,8 +155,6 @@ typedef enum {
         [self highlightEligiblePositions:@"Player1Eligible1"];
         [self highlightEligiblePositions:@"Player1Eligible2"];
         [self highlightEligiblePositions:@"Player1Eligible3"];
-        
-        [self checkUnitsAvailability];
     }
     return self;
 }
@@ -167,12 +166,20 @@ typedef enum {
 
 - (void)checkUnitsAvailability
 {
+    self.hud.warriorItem.label.string = [NSString stringWithFormat:@"Warrior (%d)", player1.Warrior];
+    self.hud.knightItem.label.string = [NSString stringWithFormat:@"Knight (%d)", player1.Knight];
+    self.hud.boomerangItem.label.string = [NSString stringWithFormat:@"Boomerang (%d)", player1.Boomerang];
+    
+    self.hud.warriorItem.isEnabled = YES;
+    self.hud.knightItem.isEnabled = YES;
+    self.hud.boomerangItem.isEnabled = YES;
+    
     if (player1.Warrior == 0)
-        self.hud.warriorItem.visible = NO;
+        self.hud.warriorItem.isEnabled = NO;
     if (player1.Knight == 0)
-        self.hud.knightItem.visible = NO;
+        self.hud.knightItem.isEnabled = NO;
     if (player1.Boomerang == 0)
-        self.hud.boomerangItem.visible = NO;
+        self.hud.boomerangItem.isEnabled = NO;
 }
 
 -(Unit *)createUnitOfType:(NSString *)type AtX:(int)x Y:(int)y forPlayer:(int)player
@@ -541,11 +548,13 @@ typedef enum {
     touchLocation = [self convertToNodeSpace:touchLocation];
 
     [self deselectAllTiles:potentialTiles];
+    [self checkUnitsAvailability];
     
     if (turn == TRUE)
     {
         if (positioningScreen)
         {
+            self.hud.unitMenu.visible = NO;
             for (CCSprite *tile in eligibleTiles)
             {
                 if (CGRectContainsPoint([tile boundingBox], touchLocation))

@@ -405,6 +405,9 @@
 		CED74F3415A2355400764133 /* ProposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED74F3315A2355400764133 /* ProposViewController.m */; };
 		CEDAA50915B4CC9700ED9EB6 /* panneau.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDAA50815B4CC9600ED9EB6 /* panneau.png */; };
 		CEDAA50B15B4CD3D00ED9EB6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDAA50A15B4CD3C00ED9EB6 /* Default.png */; };
+		DCDD08A31636EE1300325EF3 /* CCMenuItemLabelAndImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */; };
+		DCDD08A51636EFC600325EF3 /* bouton_vide.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A41636EFC600325EF3 /* bouton_vide.png */; };
+		DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A61636F18000325EF3 /* bouton_videSel.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -901,6 +904,10 @@
 		CED74F3315A2355400764133 /* ProposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposViewController.m; sourceTree = "<group>"; };
 		CEDAA50815B4CC9600ED9EB6 /* panneau.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panneau.png; path = Resources/panneau.png; sourceTree = "<group>"; };
 		CEDAA50A15B4CD3C00ED9EB6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		DCDD08A11636EE1300325EF3 /* CCMenuItemLabelAndImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMenuItemLabelAndImage.h; path = Game/CCMenuItemLabelAndImage.h; sourceTree = "<group>"; };
+		DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMenuItemLabelAndImage.m; path = Game/CCMenuItemLabelAndImage.m; sourceTree = "<group>"; };
+		DCDD08A41636EFC600325EF3 /* bouton_vide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bouton_vide.png; path = Resources/Game/bouton_vide.png; sourceTree = "<group>"; };
+		DCDD08A61636F18000325EF3 /* bouton_videSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bouton_videSel.png; path = Resources/Game/bouton_videSel.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1476,6 +1483,8 @@
 				B3EB886C1635841800243CA5 /* UnitListLayer.m */,
 				B3993CC416301DB6007C2298 /* MapLayer.h */,
 				B3993CC516301DB6007C2298 /* MapLayer.m */,
+				DCDD08A11636EE1300325EF3 /* CCMenuItemLabelAndImage.h */,
+				DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1518,6 +1527,8 @@
 		6EC75B8515A0810400687754 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				DCDD08A61636F18000325EF3 /* bouton_videSel.png */,
+				DCDD08A41636EFC600325EF3 /* bouton_vide.png */,
 				6EC75B8615A0814200687754 /* arial16.fnt */,
 				CEB8D33715B5BDD100980368 /* attack.png */,
 				CE00685E161C6A5100020652 /* back.png */,
@@ -1960,6 +1971,8 @@
 				B39DEA571636DB9600195149 /* army.png in Resources */,
 				B39DEA591636E03B00195149 /* debrief.png in Resources */,
 				B31BD78E1636F5D600FA142F /* inscription.jpg in Resources */,
+				DCDD08A51636EFC600325EF3 /* bouton_vide.png in Resources */,
+				DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2008,6 +2021,7 @@
 				B3EB886D1635841800243CA5 /* UnitListLayer.m in Sources */,
 				B3EB88731635886000243CA5 /* CCMenuAdvanced.m in Sources */,
 				B39DEA5C1636E32200195149 /* DebriefViewController.m in Sources */,
+				DCDD08A31636EE1300325EF3 /* CCMenuItemLabelAndImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
