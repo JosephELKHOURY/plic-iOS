@@ -16,22 +16,22 @@
 @synthesize username;
 @synthesize latitude;
 @synthesize longitude;
+@synthesize units;
+@synthesize Warrior, Knight, Boomerang;
 
-/*+ (NSDictionary*)elementToPropertyMappings {
-    return [NSDictionary dictionaryWithKeysAndObjects:
-            @"UDID", @"UDID",
-            @"description", @"description", 
-            @"id", @"id",
-            @"latitude", @"latitude",
-            @"longitude", @"longitude",
-            @"username", @"username",
-            nil];
-}*/
+- (id)createPlayer:(int)playerId
+{
+    self.units = [[NSMutableArray alloc] init];
+    
+    return self;
+}
 
-/*+ (NSDictionary*) elementToRelationshipMappings {
-    return [NSDictionary dictionaryWithKeysAndObjects:
-            @"location", @"location", 
-            nil];
-}*/
+
+- (void)addUnit:(Unit *)unit
+{
+    if (unit != nil)
+        [self.units addObject:unit];
+}
+
 
 @end

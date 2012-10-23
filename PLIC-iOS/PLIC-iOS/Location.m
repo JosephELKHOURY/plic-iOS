@@ -13,11 +13,4 @@
 @synthesize latitude;
 @synthesize longitude;
 
-+ (NSDictionary*)elementToPropertyMappings {
-    return [NSDictionary dictionaryWithKeysAndObjects:
-            @"latitude", @"latitude",
-            @"longitude", @"longitude",
-            nil];
-}
-
 @end

@@ -12,7 +12,7 @@
 
 @interface MasterViewController : UIViewController <MasterControllerDelegate>
 {
-    Player *player;
+    User *player;
 }
 
 @property (strong, nonatomic) RestKitController *rest;

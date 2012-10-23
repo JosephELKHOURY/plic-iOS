@@ -51,15 +51,14 @@
 
 - (void)getPlayerFromServer
 {
-    player = [[Player alloc] createPlayer:1];
+    player = [[User alloc] createPlayer:1];
     //TODO GET FROM SERVER
-    player.id = 1;
-    [self.rest getArmiesOfPlayer:player.id];
+    [self.rest getUnitsOfUser:(int)player.UUID];
 }
 
 - (void)setPlayer
 {
-    for (Player *p in self.rest.armies)
+    for (User *p in self.rest.units)
     {
         player.Warrior = p.Warrior;
         player.Knight = p.Knight;

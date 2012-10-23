@@ -11,6 +11,7 @@ enum nodeTags
 @implementation UnitListLayer
 
 @synthesize unitList;
+@synthesize widget, widgetReversed;
 
 - (id) init
 {
@@ -28,7 +29,7 @@ enum nodeTags
         
         menu.priority = kCCMenuHandlerPriority - 1;
         
-		[self addChild:menu z:0 tag: kBackButtonMenu];
+		[self addChild:menu z:0 tag:kBackButtonMenu];
 	}
 	
 	return self;
@@ -70,6 +71,7 @@ enum nodeTags
 // Go back to the default ExtensionTest Layer.
 - (void) backPressed
 {
+    NSLog(@"back button pressed");
 	[[CCDirector sharedDirector] popScene];
 }
 
@@ -78,6 +80,7 @@ enum nodeTags
 - (CCNode *) widget
 {	
 	// Prepare Menu
+
 	CCMenuAdvanced *menu = [CCMenuAdvanced menuWithItems: nil];
     for (Unit *unit in self.unitList) {
         CCMenuItem *unitItem = [CCMenuItemImage itemWithNormalImage:unit.imgRight
