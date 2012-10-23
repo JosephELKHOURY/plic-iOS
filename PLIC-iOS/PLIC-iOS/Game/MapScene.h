@@ -6,6 +6,7 @@
 #import "UnitStatsLayer.h"
 #import "Unit.h"
 #import "Player.h"
+#import "User.h"
 #import "BattleScene.h"
 
 @class RestKitController;
@@ -20,8 +21,8 @@
     int _numCollected;
     MapHud *_hud;
     BattleScene *_battleScene;
-    Player *player1;
-    Player *player2;
+    User *player1;
+    User *player2;
     NSMutableArray *selectedTiles;
     NSMutableArray *attackingTiles;
     NSMutableArray *potentialTiles;
@@ -40,8 +41,8 @@
 @property (nonatomic, assign) int numCollected;
 @property (nonatomic, retain) MapHud *hud;
 @property (nonatomic, retain) BattleScene *battleScene;
-@property (nonatomic, retain) Player *player1;
-@property (nonatomic, retain) Player *player2;
+@property (nonatomic, retain) User *player1;
+@property (nonatomic, retain) User *player2;
 @property (nonatomic, retain) NSMutableArray *selectedTiles;
 @property (nonatomic, retain) NSMutableArray *attackingTiles;
 @property (nonatomic, retain) NSMutableArray *potentialTiles;
@@ -50,7 +51,7 @@
 @property (nonatomic, retain) CCLabelTTF *attackEffect;
 @property (nonatomic, retain) CCLabelTTF *status;
 
-+ (id) scene:(Player *)player;
++ (id) scene:(User *)player;
 - (void)setPlayerPosition:(CGPoint)position;
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
 - (CGPoint)positionForTileCoord:(CGPoint)tileCoord;

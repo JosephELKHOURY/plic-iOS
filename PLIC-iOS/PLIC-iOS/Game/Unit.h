@@ -27,11 +27,6 @@ typedef enum
     int attack;
     int distance;
     UnitState state;
-    NSString *__weak name;
-    NSString *__weak imgFront;
-    NSString *__weak imgBack;
-    NSString *__weak imgLeft;
-    NSString *__weak imgRight;
     CCAnimation *facingForwardAnimation;
     CCAnimation *facingBackAnimation;
     CCAnimation *facingLeftAnimation;
@@ -39,6 +34,10 @@ typedef enum
     CCAnimation *_curAnimation;
     CCAnimate *_curAnimate;
     CCAction *currentStepAction;
+    NSString *imgFront;
+    NSString *imgBack;
+    NSString *imgLeft;
+    NSString *imgRight;
 @private
     NSMutableArray *shortestPath;
     ALuint currentPlayedEffect;
@@ -52,10 +51,10 @@ typedef enum
 @property (nonatomic, assign) int distance;
 @property (nonatomic, assign) UnitState state;
 @property (nonatomic, weak) NSString *name;
-@property (nonatomic, weak) NSString *imgFront;
-@property (nonatomic, weak) NSString *imgBack;
-@property (nonatomic, weak) NSString *imgLeft;
-@property (nonatomic, weak) NSString *imgRight;
+@property (strong, nonatomic) NSString *imgFront;
+@property (strong, nonatomic) NSString *imgBack;
+@property (strong, nonatomic) NSString *imgLeft;
+@property (strong, nonatomic) NSString *imgRight;
 @property (nonatomic, retain) NSString *imgBigLeft;
 @property (nonatomic, retain) NSString *imgBigRight;
 @property (nonatomic, retain) NSMutableArray *shortestPath;

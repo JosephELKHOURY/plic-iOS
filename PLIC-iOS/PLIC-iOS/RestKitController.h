@@ -11,6 +11,7 @@
 #import "User.h"
 #import "Bonus.h"
 #import "Player.h"
+#import "Unit.h"
 
 @protocol MapControllerDelegate <NSObject>
 
@@ -35,15 +36,15 @@
 
 @property (strong, nonatomic) NSMutableArray *data;
 @property (strong, nonatomic) NSMutableArray *bonuses;
-@property (strong, nonatomic) NSMutableArray *armies;
+@property (strong, nonatomic) NSMutableArray *units;
 @property (strong, nonatomic) id<MapControllerDelegate> mapDelegate;
 @property (strong, nonatomic) id<MasterControllerDelegate> masterDelegate;
 
 + (RestKitController*)getInstance;
 - (void)setupMappingAndRoutes;
 - (void)getUsers;
-- (void)getArmies;
-- (void)getArmiesOfPlayer:(int)playerId;
+- (void)getUnits;
+- (void)getUnitsOfUser:(int)userId;
 - (void)createUser:(NSObject *)user;
 - (void)updateUser:(NSObject *)user;
 - (void)deleteUser:(NSObject *)user;

@@ -38,9 +38,8 @@
         [self addChild:healthBar z:3];
         [healthBar setAnchorPoint: ccp(0.5,-2)];
         
-
+        
     }
-    
     return self;
 }
 
