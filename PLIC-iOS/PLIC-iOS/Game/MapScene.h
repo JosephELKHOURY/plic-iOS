@@ -61,5 +61,6 @@
 - (Unit *)createUnitOfType:(NSString *)type AtX:(int)x Y:(int)y forPlayer:(int)player;
 - (BOOL)isEnemyAtX:(float)x AtY:(float)y;
 - (NSArray *)walkableAdjacentTilesCoordForTileCoord:(CGPoint)tileCoord;
+- (void)checkUnitsAvailability;
 
 @end

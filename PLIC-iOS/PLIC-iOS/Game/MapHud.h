@@ -11,6 +11,7 @@
 #import "UnitStatsLayer.h"
 #import "Unit.h"
 #import "UnitListLayer.h"
+#import "CCMenuItemLabelAndImage.h"
 
 @protocol MapDelegate <NSObject>
 
@@ -30,9 +31,9 @@
     CCMenu *unitMenu;
     CCMenuItem *endTurnItem;
     CCMenuItem *waitTurnItem;
-    CCMenuItem *warriorItem;
-    CCMenuItem *knightItem;
-    CCMenuItem *boomerangItem;
+    CCMenuItemLabelAndImage *warriorItem;
+    CCMenuItemLabelAndImage *knightItem;
+    CCMenuItemLabelAndImage *boomerangItem;
     UnitStatsLayer *unitStats;
     UnitListLayer *unitListLayer;
     CCLabelTTF *status;
@@ -45,9 +46,9 @@
 @property (nonatomic, retain) CCMenu *unitMenu;
 @property (nonatomic, retain) CCMenuItem *endTurnItem;
 @property (nonatomic, retain) CCMenuItem *waitTurnItem;
-@property (nonatomic, retain) CCMenuItem *warriorItem;
-@property (nonatomic, retain) CCMenuItem *knightItem;
-@property (nonatomic, retain) CCMenuItem *boomerangItem;
+@property (nonatomic, retain) CCMenuItemLabelAndImage *warriorItem;
+@property (nonatomic, retain) CCMenuItemLabelAndImage *knightItem;
+@property (nonatomic, retain) CCMenuItemLabelAndImage *boomerangItem;
 @property (nonatomic, retain) UnitStatsLayer *unitStats;
 @property (nonatomic, retain) UnitListLayer *unitListLayer;
 @property (nonatomic, retain) CCLabelTTF *status;

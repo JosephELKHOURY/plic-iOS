@@ -55,9 +55,19 @@
         [self addChild:mainMenu];
         [self addChild:mMenu];
         
-        warriorItem = [CCMenuItemImage itemWithNormalImage:@"warriorButton.png" selectedImage:@"warriorButtonSel.png" target:self selector:@selector(placeWarrior)];
+        
+        CCLabelTTF *warriorLabel = [CCLabelTTF labelWithString:@"Warrior" fontName:@"Marker Felt" fontSize:12.0f];
+        warriorItem = [CCMenuItemLabelAndImage itemFromLabel:warriorLabel normalImage:@"bouton_vide.png" selectedImage:@"bouton_videSel.png" disabledImage:@"bouton_videSel.png" target:self selector:@selector(placeWarrior)];
+        
+        CCLabelTTF *knightLabel = [CCLabelTTF labelWithString:@"Knight" fontName:@"Marker Felt" fontSize:12.0f];
+        knightItem = [CCMenuItemLabelAndImage itemFromLabel:knightLabel normalImage:@"bouton_vide.png" selectedImage:@"bouton_videSel.png" disabledImage:@"bouton_videSel.png" target:self selector:@selector(placeKnight)];        
+        
+        CCLabelTTF *boomerangLabel = [CCLabelTTF labelWithString:@"Boomerang" fontName:@"Marker Felt" fontSize:12.0f];
+        boomerangItem = [CCMenuItemLabelAndImage itemFromLabel:boomerangLabel normalImage:@"bouton_vide.png" selectedImage:@"bouton_videSel.png" disabledImage:@"bouton_videSel.png" target:self selector:@selector(placeBoomerang)];
+        
+        /*warriorItem = [CCMenuItemImage itemWithNormalImage:@"warriorButton.png" selectedImage:@"warriorButtonSel.png" target:self selector:@selector(placeWarrior)];
         knightItem = [CCMenuItemImage itemWithNormalImage:@"horsemanButton.png" selectedImage:@"horsemanButtonSel.png" target:self selector:@selector(placeKnight)];
-        boomerangItem = [CCMenuItemImage itemWithNormalImage:@"boomerangButton.png" selectedImage:@"boomerangButtonSel.png" target:self selector:@selector(placeBoomerang)];
+        boomerangItem = [CCMenuItemImage itemWithNormalImage:@"boomerangButton.png" selectedImage:@"boomerangButtonSel.png" target:self selector:@selector(placeBoomerang)];*/
         
         unitMenu = [CCMenu menuWithItems: warriorItem, knightItem, boomerangItem, nil];
         [unitMenu alignItemsVertically];
