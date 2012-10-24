@@ -22,6 +22,9 @@
     int Warrior;
     int Knight;
     int Boomerang;
+    float warriorAvgLife;
+    float knightAvgLife;
+    float boomerangAvgLife;
 }
 
 @property (strong, nonatomic) NSString *UUID;
@@ -34,6 +37,9 @@
 @property (nonatomic, assign) int Warrior;
 @property (nonatomic, assign) int Knight;
 @property (nonatomic, assign) int Boomerang;
+@property (nonatomic, assign) float warriorAvgLife;
+@property (nonatomic, assign) float knightAvgLife;
+@property (nonatomic, assign) float boomerangAvgLife;
 
 - (id)createPlayer:(int)playerId;
 - (void)addUnit:(Unit *)unit;

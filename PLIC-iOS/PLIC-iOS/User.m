@@ -18,6 +18,7 @@
 @synthesize longitude;
 @synthesize units;
 @synthesize Warrior, Knight, Boomerang;
+@synthesize warriorAvgLife, knightAvgLife, boomerangAvgLife;
 
 - (id)createPlayer:(int)playerId
 {
@@ -32,6 +33,7 @@
     if (unit != nil)
         [self.units addObject:unit];
 }
+
 
 
 @end
