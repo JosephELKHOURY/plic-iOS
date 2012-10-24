@@ -28,8 +28,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.txtName.text = user.username;
-    self.txtDescription.text = user.description;
+    self.txtName.text = user.Username;
+    self.txtDescription.text = user.Description;
     [self.btnSave addTarget:self action:@selector(updateInfo:) forControlEvents:UIControlEventTouchUpInside];
     self.txtName.textColor = [UIColor lightGrayColor];
     self.txtDescription.textColor = [UIColor lightGrayColor];
@@ -77,9 +77,13 @@
     self.txtDescription.enabled = NO;
     self.txtDescription.textColor = [UIColor lightGrayColor];
     
-    user.username = self.txtName.text;
-    user.description = self.txtDescription.text;
+    user.Username = self.txtName.text;
+    user.Description = self.txtDescription.text;
+    
     //TODO UDPDATE INFO: SEND TO SERVER
+    RestKitController *rest = [RestKitController getInstance];
+    [rest updateUser:user];
+    
     
     [self.btnSave removeTarget:self action:@selector(saveInfo:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnSave addTarget:self action:@selector(updateInfo:) forControlEvents:UIControlEventTouchUpInside];

@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inscription.jpg"]];
+    [self.tableView setBackgroundView:imageView];
 }
 
 -(IBAction)cancel
@@ -38,8 +40,10 @@
 {
     User *user = [[User alloc] init];
     user.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
-    user.username = self.txtName.text;
-    user.description = self.txtDescription.text;
+    user.Username = self.txtName.text;
+    user.Description = self.txtDescription.text;
+    RestKitController *rest = [RestKitController getInstance];
+    [rest createUser:user];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +61,7 @@
         [self.txtDescription resignFirstResponder];
     [super touchesBegan:touches withEvent:event];
 }
+
 
 - (void)viewDidUnload {
     [self setTxtName:nil];

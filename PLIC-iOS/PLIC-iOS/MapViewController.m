@@ -56,7 +56,7 @@
             [rest createUser:u];
         }
 		user = [[Annotation alloc] initWithCoordinate:workingCoordinate];
-		[user setTitle:u.username];
+		[user setTitle:u.Username];
 		[user setSubtitle:@"Vous êtes ici"];
 		[user setAnnotationType:AnnotationTypeUser];
 	}
@@ -71,10 +71,10 @@
     {
         if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
-            workingCoordinate.latitude = [u.latitude doubleValue];
-            workingCoordinate.longitude = [u.longitude doubleValue];
+            workingCoordinate.latitude = [u.Latitude doubleValue];
+            workingCoordinate.longitude = [u.Longitude doubleValue];
             player = [[Annotation alloc] initWithCoordinate:workingCoordinate];
-            [player setTitle:u.username];
+            [player setTitle:u.Username];
             [player setSubtitle:@""];
             [player setAnnotationType:AnnotationTypeApple];
             [mapView addAnnotation:player];
@@ -211,11 +211,11 @@
     {
         if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
-            double latitude = [u.latitude doubleValue];
-            double longitude = [u.longitude doubleValue];
+            double latitude = [u.Latitude doubleValue];
+            double longitude = [u.Longitude doubleValue];
             
             tempLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-            tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:u.username locationDescription:u.description];
+            tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:u.Username locationDescription:u.Description];
             [locationArray addObject:tempCoordinate];
         }
     }

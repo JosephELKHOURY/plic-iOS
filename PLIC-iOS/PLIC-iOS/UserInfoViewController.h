@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "RestKitController.h"
 
 @interface UserInfoViewController : UIViewController
 {

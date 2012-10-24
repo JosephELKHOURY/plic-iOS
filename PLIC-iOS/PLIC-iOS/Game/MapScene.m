@@ -382,7 +382,7 @@ typedef enum {
     
     if (turn == TRUE)
     {
-        for (Unit *unit in player2.units)
+        for (Unit *unit in player2.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], point)) 
             {
@@ -487,14 +487,14 @@ typedef enum {
 
 - (BOOL)isUnitAtPosition:(CGPoint)touchLocation
 {
-    for (Unit *unit in player1.units)
+    for (Unit *unit in player1.Units)
     {
         if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
         {
             return YES;
         }
     }
-    for (Unit *unit in player2.units)
+    for (Unit *unit in player2.Units)
     {
         if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
         {
@@ -506,7 +506,7 @@ typedef enum {
 
 -(NSMutableArray *) getCurrentPlayerUnitList
 {
-    return player1.units;
+    return player1.Units;
 }
 
 -(void) attackWith:(Unit *)player Against:(Unit *)enemy
@@ -525,10 +525,10 @@ typedef enum {
     if (enemy.hp < 0)
     {
         [self removeChild:enemy cleanup:TRUE];
-        [player2.units removeObject:enemy];
+        [player2.Units removeObject:enemy];
     }
     
-    if ([player2.units count] == 0)
+    if ([player2.Units count] == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Victoire!" message:@"Vous avez gagné!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -571,7 +571,7 @@ typedef enum {
         }
         if (self.battleScene.visible = YES)
             self.battleScene.visible = NO;
-        for (Unit *unit in player1.units)
+        for (Unit *unit in player1.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
@@ -597,7 +597,7 @@ typedef enum {
             }
         }
         
-        for (Unit *unit in player2.units)
+        for (Unit *unit in player2.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
@@ -658,7 +658,7 @@ typedef enum {
         [self deselectAllTiles:selectedTiles];
         [self deselectAllTiles:attackingTiles];
         [self deselectAllTiles:potentialTiles];
-        for (Unit *unit in player1.units)
+        for (Unit *unit in player1.Units)
         {
             [unit setDefaults];
         }

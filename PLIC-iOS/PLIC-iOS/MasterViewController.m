@@ -52,17 +52,19 @@
 - (void)getPlayerFromServer
 {
     player = [[User alloc] createPlayer:1];
+    player.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
     //TODO GET FROM SERVER
-    player.username = @"josephelk";
-    player.description = @"combattant tres fort";
-    [self.rest getUnitsOfUser:(int)player.UUID];
+    //player.username = @"josephelk";
+    //player.description = @"combattant tres fort";
+    [self.rest getUser:player.UUID];
     [self setPlayer];
 }
 
 - (void)setPlayer
 {
-    for (User *p in self.rest.data)
+    for (User *p in self.rest.userInfo)
     {
+        NSLog(@"%@", p);
         player.Warrior = p.Warrior;
         player.Knight = p.Knight;
         player.Boomerang = p.Boomerang;
