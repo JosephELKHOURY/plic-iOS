@@ -91,6 +91,7 @@ typedef enum {
         for (int y = p.y; y < t.y+p.y; y += _tileMap.tileSize.height)
             [self setEligibleTileAtX:x AtY:y];
     }
+    //
 }
 
 // on "init" you need to initialize your instance
