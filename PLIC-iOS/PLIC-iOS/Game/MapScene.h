@@ -64,6 +64,7 @@ typedef struct {
     CGPoint position;
     char type;
     int hp;
+    bool forPlayer1;
 } MessageAddUnit;
 
 typedef struct {

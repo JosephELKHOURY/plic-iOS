@@ -214,13 +214,14 @@ typedef enum {
     [self sendData:data];
 }
 
-- (void)sendAddUnitAtPosition:(CGPoint)position Type:(char)type HP:(int)hp {
+- (void)sendAddUnitAtPosition:(CGPoint)position Type:(char)type HP:(int)hp forPlayer:(bool)player {
     
     MessageAddUnit message;
     message.message.messageType = kMessageTypeAddUnit;
     message.position = position;
     message.type = type;
     message.hp = hp;
+    message.forPlayer1 = player;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageMove)];
     [self sendData:data];
 }
@@ -314,6 +315,12 @@ typedef enum {
         CCLOG(@"Received turn");
         MessageTurn * messageTurn = (MessageTurn *) [data bytes];
         turnPlayer1 = messageTurn->turnPlayer1;
+        
+        if (turnPlayer1 == isPlayer1)
+        {
+            CCLOG(@"It's our turn");
+            [self startTurn];
+        }
     }
     else if (message->messageType == kMessageTypeMove)
     {
@@ -344,27 +351,32 @@ typedef enum {
     else if (message->messageType == kMessageTypeAddUnit)
     {
         CCLOG(@"Received add unit");
+        
         MessageAddUnit * messageAddUnit= (MessageAddUnit *) [data bytes];
         int forPlayer = 0;
         
-        if (isPlayer1)
-            forPlayer = 2;
-        else
-            forPlayer = 1;
-        
-        switch (messageAddUnit->type)
+        // If the unit is added for player X and we are player X, nothing to do
+        if (isPlayer1 != messageAddUnit->forPlayer1)
         {
-            case 'k':
-                [self createUnitOfType:@"Knight" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
-                break;
-            case 'b':
-                [self createUnitOfType:@"Boomerang" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
-                break;
-            case 'w':
-                [self createUnitOfType:@"Warrior" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
-                break;
-            default:
-                break;
+            if (messageAddUnit->forPlayer1)
+                forPlayer = 1;
+            else
+                forPlayer = 2;
+            
+            switch (messageAddUnit->type)
+            {
+                case 'k':
+                    [self createUnitOfType:@"Knight" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    break;
+                case 'b':
+                    [self createUnitOfType:@"Boomerang" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    break;
+                case 'w':
+                    [self createUnitOfType:@"Warrior" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    break;
+                default:
+                    break;
+            }
         }
     }
     else if (message->messageType == kMessageTypeGameOver)
@@ -522,12 +534,12 @@ typedef enum {
     unit.position = [self positionForTileCoord:p];
     [self addChild:unit];
     
-    if (turnPlayer1)
-        [self sendAddUnitAtPosition:unit.position Type:t HP:unit.hp];
-    
     [currentPlayer addUnit:unit];
     
     [self checkUnitsAvailability];
+    
+    // Send message for the other player
+    [self sendAddUnitAtPosition:unit.position Type:t HP:unit.hp forPlayer:isPlayer1];
     
     return unit;
 }
@@ -554,7 +566,6 @@ typedef enum {
 {
 	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     [self.hud setDelegate:self];
-    [self startTurn];
 }
 
 - (void)selectAttackingTilesAroundUnit:(Unit *)unit
@@ -778,7 +789,7 @@ typedef enum {
 
 -(void)setPlayerPosition:(CGPoint)position 
 {
-      //[[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
     [_player moveToward:position];
     [_player popStepAndAnimate];
     
@@ -945,46 +956,54 @@ typedef enum {
     //[self.hud.status setString:@"Vous avez gagné"];
 }
 
-// TODO change timer to cocos2d scheduler
-// http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:best_practices
 - (void)removeStatus:(NSTimer *)timer
 {
     [self.hud.status setString:@""];
 }
 
-- (void)startTurn
+-(void)startTurn
 {
-    //[NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(endTurn:) userInfo:nil repeats:YES];
+    
+    // Setup timer to end our turn after 30 seconds
+    
+    // TODO change timer to cocos2d scheduler
+    // http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:best_practices
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
+    
+    // Allow player to end his turn early
     [self.hud showEndTurn];
 }
 
 -(void)endTurn
 {
-    if (turnPlayer1)
+    // If it's currently our turn, end it, else don't do anything
+    if (turnPlayer1 == isPlayer1)
     {
         [self.hud showWaitTurn];
+        
         [self deselectAllTiles:selectedTiles];
         [self deselectAllTiles:attackingTiles];
         [self deselectAllTiles:potentialTiles];
+        
+        // Reset unit moves
         for (Unit *unit in player1.Units)
         {
             [unit setDefaults];
         }
-        turnPlayer1 = FALSE;
-        [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
+        
         if (positioningScreen)
         {
             positioningScreen = FALSE;
             [self deselectEligibleTiles];
         }
+        
         [self removeStatus:nil];
+    
+        // Toggle turn
+        turnPlayer1 = !turnPlayer1;
+    
+        [self sendTurnPlayer1];
     }
-    else
-    {
-        turnPlayer1 = TRUE;
-        [self.hud showEndTurn];
-    }
-    [self sendTurnPlayer1];
 }
 
 - (BOOL)isValidTileCoord:(CGPoint)tileCoord {
