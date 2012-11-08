@@ -8,10 +8,76 @@
 #import "Player.h"
 #import "User.h"
 #import "BattleScene.h"
+#import "GCHelper.h"
+#import "AppDelegate.h"
+
+typedef enum {
+    kGameStateWaitingForMatch = 0,
+    kGameStateWaitingForRandomNumber,
+    kGameStateWaitingForStart,
+    kGameStateActive,
+    kGameStateDone
+} GameState;
+
+typedef enum {
+    kEndReasonWin,
+    kEndReasonLose,
+    kEndReasonDisconnect
+} EndReason;
+
+typedef enum {
+    kMessageTypeRandomNumber = 0,
+    kMessageTypeGameBegin,
+    KMessageTypeTurn,
+    kMessageTypeMove,
+    kMessageTypeAddUnit,
+    kMessageTypeAttack,
+    kMessageTypeGameOver
+} MessageType;
+
+typedef struct {
+    MessageType messageType;
+} Message;
+
+typedef struct {
+    Message message;
+    uint32_t randomNumber;
+} MessageRandomNumber;
+
+typedef struct {
+    Message message;
+} MessageGameBegin;
+
+typedef struct {
+    Message message;
+    bool turnPlayer1;
+} MessageTurn;
+
+typedef struct {
+    Message message;
+    CGPoint from;
+    CGPoint to;
+} MessageMove;
+
+typedef struct {
+    Message message;
+    CGPoint position;
+    char type;
+    int hp;
+} MessageAddUnit;
+
+typedef struct {
+    Message message;
+} MessageAttack;
+
+typedef struct {
+    Message message;
+    BOOL player1Won;
+} MessageGameOver;
 
 @class RestKitController;
 
-@interface Map : CCLayer <MapDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, UIAlertViewDelegate>
+@interface Map : CCLayer <MapDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, UIAlertViewDelegate, GCHelperDelegate>
 {
     CCTMXTiledMap *_tileMap;
     CCTMXLayer *_background;
@@ -30,6 +96,13 @@
     CCLabelTTF *attackEffect;
     CCLabelTTF *status;
     bool positioningScreen;
+    
+    uint32_t ourRandom;
+    BOOL receivedRandom;
+    NSString *otherPlayerID;
+    BOOL isPlayer1;
+    GameState gameState;
+    CCLabelBMFont *debugLabel;
 }
 
 @property (strong, nonatomic) RestKitController *rest;
@@ -47,7 +120,7 @@
 @property (nonatomic, retain) NSMutableArray *attackingTiles;
 @property (nonatomic, retain) NSMutableArray *potentialTiles;
 @property (nonatomic, retain) NSMutableArray *eligibleTiles;
-@property (nonatomic, assign) BOOL turn;
+@property (nonatomic, assign) BOOL turnPlayer1;
 @property (nonatomic, retain) CCLabelTTF *attackEffect;
 @property (nonatomic, retain) CCLabelTTF *status;
 

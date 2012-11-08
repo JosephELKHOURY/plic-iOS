@@ -410,6 +410,8 @@
 		DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A61636F18000325EF3 /* bouton_videSel.png */; };
 		DCDD08B71636FA4100325EF3 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD08B61636FA4100325EF3 /* UserInfoViewController.m */; };
 		DCDD08B91636FB6200325EF3 /* chateau.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08B81636FB6200325EF3 /* chateau.png */; };
+		DCDD2707164BEDD90008928D /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD2706164BEDD90008928D /* GCHelper.m */; };
+		DCDD270A164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -913,6 +915,10 @@
 		DCDD08B51636FA4100325EF3 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		DCDD08B61636FA4100325EF3 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		DCDD08B81636FB6200325EF3 /* chateau.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chateau.png; path = Resources/chateau.png; sourceTree = "<group>"; };
+		DCDD2705164BEDD90008928D /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCHelper.h; path = Game/GCHelper.h; sourceTree = "<group>"; };
+		DCDD2706164BEDD90008928D /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCHelper.m; path = Game/GCHelper.m; sourceTree = "<group>"; };
+		DCDD2708164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GKMatchmakerViewController-LandscapeOnly.h"; path = "Game/GKMatchmakerViewController-LandscapeOnly.h"; sourceTree = "<group>"; };
+		DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GKMatchmakerViewController-LandscapeOnly.m"; path = "Game/GKMatchmakerViewController-LandscapeOnly.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1493,6 +1499,10 @@
 				B3993CC516301DB6007C2298 /* MapLayer.m */,
 				DCDD08A11636EE1300325EF3 /* CCMenuItemLabelAndImage.h */,
 				DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */,
+				DCDD2705164BEDD90008928D /* GCHelper.h */,
+				DCDD2706164BEDD90008928D /* GCHelper.m */,
+				DCDD2708164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.h */,
+				DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -2032,6 +2042,8 @@
 				B39DEA5C1636E32200195149 /* DebriefViewController.m in Sources */,
 				DCDD08A31636EE1300325EF3 /* CCMenuItemLabelAndImage.m in Sources */,
 				DCDD08B71636FA4100325EF3 /* UserInfoViewController.m in Sources */,
+				DCDD2707164BEDD90008928D /* GCHelper.m in Sources */,
+				DCDD270A164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2202,8 +2214,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2227,8 +2239,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = parisk;
-				PROVISIONING_PROFILE = "061457E6-7667-480F-897E-947A34819191";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "061457E6-7667-480F-897E-947A34819191";
+				PROVISIONING_PROFILE = "4661BF00-4036-41DC-8BFE-292D46A39BF1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4661BF00-4036-41DC-8BFE-292D46A39BF1";
 				USER_HEADER_SEARCH_PATHS = $SRCROOT;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2241,8 +2253,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emmanuel Requier (XE43K26LGV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hadi El Khoury (LAEPWM4V9Z)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2264,8 +2276,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = parisk;
-				PROVISIONING_PROFILE = "061457E6-7667-480F-897E-947A34819191";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "061457E6-7667-480F-897E-947A34819191";
+				PROVISIONING_PROFILE = "4661BF00-4036-41DC-8BFE-292D46A39BF1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4661BF00-4036-41DC-8BFE-292D46A39BF1";
 				USER_HEADER_SEARCH_PATHS = $SRCROOT;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
