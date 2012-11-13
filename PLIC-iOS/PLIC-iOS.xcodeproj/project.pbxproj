@@ -338,6 +338,8 @@
 		6EC75C0415A08A3A00687754 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC75C0315A08A3A00687754 /* MapKit.framework */; };
 		6EFAF2321610C31C006DD094 /* Bonus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAF2311610C31C006DD094 /* Bonus.m */; };
 		B31BD78E1636F5D600FA142F /* inscription.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B31BD78D1636F5D600FA142F /* inscription.jpg */; };
+		B31F490816525C5C00FE0A7C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B31F490616525C5C00FE0A7C /* Default.png */; };
+		B31F490916525C5C00FE0A7C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B31F490716525C5C00FE0A7C /* Default@2x.png */; };
 		B3404D63161B54990087D39C /* BattleScene.h in Headers */ = {isa = PBXBuildFile; fileRef = B3404D61161B54990087D39C /* BattleScene.h */; };
 		B3404D64161B54990087D39C /* BattleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B3404D62161B54990087D39C /* BattleScene.m */; };
 		B3404D6A161B56530087D39C /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = B3404D69161B56520087D39C /* Background.png */; };
@@ -360,8 +362,6 @@
 		B3EB886D1635841800243CA5 /* UnitListLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EB886C1635841800243CA5 /* UnitListLayer.m */; };
 		B3EB88731635886000243CA5 /* CCMenuAdvanced.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EB88721635886000243CA5 /* CCMenuAdvanced.m */; };
 		B3F139A5161B147C006D3F3A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139A4161B147C006D3F3A /* Icon@2x.png */; };
-		B3F139A7161B14F9006D3F3A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139A6161B14F9006D3F3A /* Default.png */; };
-		B3F139A9161B14FF006D3F3A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139A8161B14FF006D3F3A /* Default@2x.png */; };
 		B3F139AB161B1610006D3F3A /* panneau_propos.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F139AA161B1610006D3F3A /* panneau_propos.png */; };
 		B3F139AD161B16E3006D3F3A /* ecran_accueil.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3F139AC161B16E3006D3F3A /* ecran_accueil.jpg */; };
 		B3F139AF161B1763006D3F3A /* ecran_accueil-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3F139AE161B1763006D3F3A /* ecran_accueil-hd.jpg */; };
@@ -395,7 +395,6 @@
 		CE00688F161C8D9A00020652 /* warriorButtonSel.png in Resources */ = {isa = PBXBuildFile; fileRef = CE006889161C8D9A00020652 /* warriorButtonSel.png */; };
 		CE006891161C90D700020652 /* loginFB.png in Resources */ = {isa = PBXBuildFile; fileRef = CE006890161C90D700020652 /* loginFB.png */; };
 		CE006893161C91F700020652 /* bgFB.png in Resources */ = {isa = PBXBuildFile; fileRef = CE006892161C91F600020652 /* bgFB.png */; };
-		CE006895161C98F100020652 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CE006894161C98F100020652 /* Default.png */; };
 		CE03570515A222E500F1A0FC /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE03570415A222E500F1A0FC /* RulesViewController.m */; };
 		CEB8D32615B5BA4600980368 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8D32315B5BA4600980368 /* selected.png */; };
 		CEB8D33815B5BDD100980368 /* potential.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8D33615B5BDD100980368 /* potential.png */; };
@@ -404,7 +403,6 @@
 		CED74F2F15A230C900764133 /* panneau_regle.png in Resources */ = {isa = PBXBuildFile; fileRef = CED74F2D15A230C800764133 /* panneau_regle.png */; };
 		CED74F3415A2355400764133 /* ProposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED74F3315A2355400764133 /* ProposViewController.m */; };
 		CEDAA50915B4CC9700ED9EB6 /* panneau.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDAA50815B4CC9600ED9EB6 /* panneau.png */; };
-		CEDAA50B15B4CD3D00ED9EB6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDAA50A15B4CD3C00ED9EB6 /* Default.png */; };
 		DCDD08A31636EE1300325EF3 /* CCMenuItemLabelAndImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */; };
 		DCDD08A51636EFC600325EF3 /* bouton_vide.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A41636EFC600325EF3 /* bouton_vide.png */; };
 		DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08A61636F18000325EF3 /* bouton_videSel.png */; };
@@ -834,6 +832,8 @@
 		6EFAF2311610C31C006DD094 /* Bonus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bonus.m; sourceTree = "<group>"; };
 		B31BD77F1636EE7A00FA142F /* Burbin Casual NC.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Burbin Casual NC.ttf"; sourceTree = "<group>"; };
 		B31BD78D1636F5D600FA142F /* inscription.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inscription.jpg; sourceTree = "<group>"; };
+		B31F490616525C5C00FE0A7C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		B31F490716525C5C00FE0A7C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		B3404D61161B54990087D39C /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BattleScene.h; path = Game/BattleScene.h; sourceTree = "<group>"; };
 		B3404D62161B54990087D39C /* BattleScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BattleScene.m; path = Game/BattleScene.m; sourceTree = "<group>"; };
 		B3404D69161B56520087D39C /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = Resources/Game/Background.png; sourceTree = "<group>"; };
@@ -860,8 +860,6 @@
 		B3EB88711635885F00243CA5 /* CCMenuAdvanced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuAdvanced.h; sourceTree = "<group>"; };
 		B3EB88721635886000243CA5 /* CCMenuAdvanced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuAdvanced.m; sourceTree = "<group>"; };
 		B3F139A4161B147C006D3F3A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
-		B3F139A6161B14F9006D3F3A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
-		B3F139A8161B14FF006D3F3A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		B3F139AA161B1610006D3F3A /* panneau_propos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panneau_propos.png; path = Resources/panneau_propos.png; sourceTree = "<group>"; };
 		B3F139AC161B16E3006D3F3A /* ecran_accueil.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ecran_accueil.jpg; path = Resources/ecran_accueil.jpg; sourceTree = "<group>"; };
 		B3F139AE161B1763006D3F3A /* ecran_accueil-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ecran_accueil-hd.jpg"; path = "Resources/ecran_accueil-hd.jpg"; sourceTree = "<group>"; };
@@ -896,7 +894,6 @@
 		CE006889161C8D9A00020652 /* warriorButtonSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = warriorButtonSel.png; path = Resources/Game/warriorButtonSel.png; sourceTree = "<group>"; };
 		CE006890161C90D700020652 /* loginFB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginFB.png; sourceTree = "<group>"; };
 		CE006892161C91F600020652 /* bgFB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgFB.png; sourceTree = "<group>"; };
-		CE006894161C98F100020652 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CE03570315A222E500F1A0FC /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
 		CE03570415A222E500F1A0FC /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
 		CEB8D32315B5BA4600980368 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = Resources/selected.png; sourceTree = "<group>"; };
@@ -907,7 +904,6 @@
 		CED74F3215A2355400764133 /* ProposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposViewController.h; sourceTree = "<group>"; };
 		CED74F3315A2355400764133 /* ProposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposViewController.m; sourceTree = "<group>"; };
 		CEDAA50815B4CC9600ED9EB6 /* panneau.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = panneau.png; path = Resources/panneau.png; sourceTree = "<group>"; };
-		CEDAA50A15B4CD3C00ED9EB6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		DCDD08A11636EE1300325EF3 /* CCMenuItemLabelAndImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMenuItemLabelAndImage.h; path = Game/CCMenuItemLabelAndImage.h; sourceTree = "<group>"; };
 		DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMenuItemLabelAndImage.m; path = Game/CCMenuItemLabelAndImage.m; sourceTree = "<group>"; };
 		DCDD08A41636EFC600325EF3 /* bouton_vide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bouton_vide.png; path = Resources/Game/bouton_vide.png; sourceTree = "<group>"; };
@@ -976,7 +972,6 @@
 		6EC7577015A07EFE00687754 = {
 			isa = PBXGroup;
 			children = (
-				CE006894161C98F100020652 /* Default.png */,
 				6E6D1D1215B0B6AD0084D2FF /* RestKit.xcodeproj */,
 				6EC7579115A07EFE00687754 /* PLIC-iOS */,
 				6EC7591815A07F2400687754 /* cocos2d-library */,
@@ -1052,6 +1047,8 @@
 				6EC75B7715A080BC00687754 /* CameraViewController.m */,
 				6EC75B7815A080BC00687754 /* GameViewController.h */,
 				6EC75B7915A080BC00687754 /* GameViewController.m */,
+				DCDD2708164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.h */,
+				DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */,
 				6E6D1D4B15B0BD2C0084D2FF /* User.h */,
 				6E6D1D4C15B0BD2C0084D2FF /* User.m */,
 				6EFAF2301610C31C006DD094 /* Bonus.h */,
@@ -1079,6 +1076,8 @@
 		6EC7579215A07EFE00687754 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B31F490616525C5C00FE0A7C /* Default.png */,
+				B31F490716525C5C00FE0A7C /* Default@2x.png */,
 				DCDD08B81636FB6200325EF3 /* chateau.png */,
 				B31BD78D1636F5D600FA142F /* inscription.jpg */,
 				B31BD77F1636EE7A00FA142F /* Burbin Casual NC.ttf */,
@@ -1086,8 +1085,6 @@
 				B39DEA561636DB9600195149 /* army.png */,
 				CE006892161C91F600020652 /* bgFB.png */,
 				CE006890161C90D700020652 /* loginFB.png */,
-				B3F139A8161B14FF006D3F3A /* Default@2x.png */,
-				B3F139A6161B14F9006D3F3A /* Default.png */,
 				B3F139A4161B147C006D3F3A /* Icon@2x.png */,
 				B3F139B0161B1834006D3F3A /* Icon.png */,
 				B3F139AC161B16E3006D3F3A /* ecran_accueil.jpg */,
@@ -1099,7 +1096,6 @@
 				CEBADAA715B56E4700A8728A /* retour.png */,
 				CED74F2D15A230C800764133 /* panneau_regle.png */,
 				B3F139AA161B1610006D3F3A /* panneau_propos.png */,
-				CEDAA50A15B4CD3C00ED9EB6 /* Default.png */,
 				CEDAA50815B4CC9600ED9EB6 /* panneau.png */,
 				6EC75BF515A0818800687754 /* location.png */,
 				6EC75B8515A0810400687754 /* Game */,
@@ -1501,8 +1497,6 @@
 				DCDD08A21636EE1300325EF3 /* CCMenuItemLabelAndImage.m */,
 				DCDD2705164BEDD90008928D /* GCHelper.h */,
 				DCDD2706164BEDD90008928D /* GCHelper.m */,
-				DCDD2708164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.h */,
-				DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1901,7 +1895,6 @@
 				6E2CF6BE15A2FB56009CD18C /* apropos.jpg in Resources */,
 				6E2CF6BF15A2FB56009CD18C /* regles.jpg in Resources */,
 				CEDAA50915B4CC9700ED9EB6 /* panneau.png in Resources */,
-				CEDAA50B15B4CD3D00ED9EB6 /* Default.png in Resources */,
 				CEBADAA815B56E4700A8728A /* retour.png in Resources */,
 				CEB8D32615B5BA4600980368 /* selected.png in Resources */,
 				CEB8D33815B5BDD100980368 /* potential.png in Resources */,
@@ -1938,8 +1931,6 @@
 				6E2D4B8515F77DD900FEAFB2 /* FacebookSDKResources.bundle in Resources */,
 				6E2D4B8D15F7855800FEAFB2 /* FacebookLoginView.xib in Resources */,
 				B3F139A5161B147C006D3F3A /* Icon@2x.png in Resources */,
-				B3F139A7161B14F9006D3F3A /* Default.png in Resources */,
-				B3F139A9161B14FF006D3F3A /* Default@2x.png in Resources */,
 				B3F139AB161B1610006D3F3A /* panneau_propos.png in Resources */,
 				B3F139AD161B16E3006D3F3A /* ecran_accueil.jpg in Resources */,
 				B3F139AF161B1763006D3F3A /* ecran_accueil-hd.jpg in Resources */,
@@ -1985,13 +1976,14 @@
 				CE00688F161C8D9A00020652 /* warriorButtonSel.png in Resources */,
 				CE006891161C90D700020652 /* loginFB.png in Resources */,
 				CE006893161C91F700020652 /* bgFB.png in Resources */,
-				CE006895161C98F100020652 /* Default.png in Resources */,
 				B39DEA571636DB9600195149 /* army.png in Resources */,
 				B39DEA591636E03B00195149 /* debrief.png in Resources */,
 				B31BD78E1636F5D600FA142F /* inscription.jpg in Resources */,
 				DCDD08A51636EFC600325EF3 /* bouton_vide.png in Resources */,
 				DCDD08A71636F18000325EF3 /* bouton_videSel.png in Resources */,
 				DCDD08B91636FB6200325EF3 /* chateau.png in Resources */,
+				B31F490816525C5C00FE0A7C /* Default.png in Resources */,
+				B31F490916525C5C00FE0A7C /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
