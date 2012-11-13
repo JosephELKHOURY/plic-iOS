@@ -37,6 +37,7 @@
 @property (strong, nonatomic) NSMutableArray *data;
 @property (strong, nonatomic) NSMutableArray *bonuses;
 @property (strong, nonatomic) NSMutableArray *units;
+@property (strong, nonatomic) NSMutableArray *userInfo;
 @property (strong, nonatomic) id<MapControllerDelegate> mapDelegate;
 @property (strong, nonatomic) id<MasterControllerDelegate> masterDelegate;
 
@@ -44,7 +45,7 @@
 - (void)setupMappingAndRoutes;
 - (void)getUsers;
 - (void)getUnits;
-- (void)getUnitsOfUser:(int)userId;
+- (void)getUser:(NSString *)uuid;
 - (void)createUser:(NSObject *)user;
 - (void)updateUser:(NSObject *)user;
 - (void)deleteUser:(NSObject *)user;

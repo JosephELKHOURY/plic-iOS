@@ -20,7 +20,7 @@ typedef enum {
 @synthesize battleScene = _battleScene;
 @synthesize player1, player2;
 @synthesize selectedTiles, attackingTiles, potentialTiles, eligibleTiles;
-@synthesize turn;
+@synthesize turnPlayer1;
 @synthesize attackEffect;
 @synthesize status;
 @synthesize rest;
@@ -91,6 +91,7 @@ typedef enum {
         for (int y = p.y; y < t.y+p.y; y += _tileMap.tileSize.height)
             [self setEligibleTileAtX:x AtY:y];
     }
+    //
 }
 
 // on "init" you need to initialize your instance
@@ -111,9 +112,9 @@ typedef enum {
         _meta.visible = NO;
         
         //player1 = [[Player alloc] createPlayer:1];
-        player2 = [[User alloc] createPlayer:2];
-        player2.Warrior = 1;
-        [player2 addUnit:[self createUnitOfType:@"Warrior" AtX:7 Y:3 forPlayer:2]];
+        //player2 = [[User alloc] createPlayer:2];
+        //player2.Warrior = 1;
+        //[player2 addUnit:[self createUnitOfType:@"Warrior" AtX:7 Y:3 forPlayer:2]];
         
         selectedTiles = [[NSMutableArray alloc] init];
         attackingTiles = [[NSMutableArray alloc] init];
@@ -121,7 +122,7 @@ typedef enum {
         eligibleTiles = [[NSMutableArray alloc] init];
         
         //TODO: Get from server
-        turn = TRUE;
+        turnPlayer1 = TRUE;
         
         // Create a player sprite at the x,y coordinates
         self.player = [Unit spriteWithFile:@"mittouw.png"];
@@ -155,13 +156,320 @@ typedef enum {
         [self highlightEligiblePositions:@"Player1Eligible1"];
         [self highlightEligiblePositions:@"Player1Eligible2"];
         [self highlightEligiblePositions:@"Player1Eligible3"];
+        
+        AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+        [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:delegate.window.rootViewController delegate:self];
+        
+        ourRandom = arc4random();
+        [self setGameState:kGameStateWaitingForMatch];
     }
     return self;
 }
 
-- (void)update:(ccTime)dt 
-{    
+- (void)sendData:(NSData *)data {
+    NSError *error;
+    BOOL success = [[GCHelper sharedInstance].match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    if (!success) {
+        CCLOG(@"Error sending init packet");
+        [self matchEnded];
+    }
+}
+
+- (void)sendRandomNumber {
+    
+    MessageRandomNumber message;
+    message.message.messageType = kMessageTypeRandomNumber;
+    message.randomNumber = ourRandom;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageRandomNumber)];
+    [self sendData:data];
+}
+
+- (void)sendGameBegin {
+    
+    MessageGameBegin message;
+    message.message.messageType = kMessageTypeGameBegin;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameBegin)];
+    [self sendData:data];
+    
+}
+
+- (void)sendTurnPlayer1 {
+    
+    MessageTurn message;
+    message.message.messageType = KMessageTypeTurn;
+    message.turnPlayer1 = TRUE;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTurn)];
+    [self sendData:data];
+    
+}
+
+
+- (void)sendMoveFromPosition:(CGPoint)from toPosition:(CGPoint)to {
+    
+    MessageMove message;
+    message.message.messageType = kMessageTypeMove;
+    message.from = from;
+    message.to = to;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageMove)];
+    [self sendData:data];
+}
+
+- (void)sendAddUnitAtPosition:(CGPoint)position Type:(char)type HP:(int)hp forPlayer:(bool)player {
+    
+    MessageAddUnit message;
+    message.message.messageType = kMessageTypeAddUnit;
+    message.position = position;
+    message.type = type;
+    message.hp = hp;
+    message.forPlayer1 = player;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageMove)];
+    [self sendData:data];
+}
+
+- (void)sendAttack {
+    
+    MessageAttack message;
+    message.message.messageType = kMessageTypeAttack;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageAttack)];
+    [self sendData:data];
+    
+}
+
+- (void)sendGameOver:(BOOL)player1Won {
+    
+    MessageGameOver message;
+    message.message.messageType = kMessageTypeGameOver;
+    message.player1Won = player1Won;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameOver)];
+    [self sendData:data];
+    
+}
+
+#pragma mark GCHelperDelegate
+
+- (void)matchStarted
+{
+    CCLOG(@"Match started");
+    if (receivedRandom) {
+        [self setGameState:kGameStateWaitingForStart];
+    } else {
+        [self setGameState:kGameStateWaitingForRandomNumber];
+    }
+    [self sendRandomNumber];
+    [self tryStartGame];
+}
+
+- (void)matchEnded
+{
+    CCLOG(@"Match ended");
+    [[GCHelper sharedInstance].match disconnect];
+    [GCHelper sharedInstance].match = nil;
+    [self endScene:kEndReasonDisconnect];
+}
+
+- (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {
+    
+    // Store away other player ID for later
+    if (otherPlayerID == nil) {
+        otherPlayerID = playerID;
+    }
+    
+    Message *message = (Message *) [data bytes];
+    if (message->messageType == kMessageTypeRandomNumber)
+    {
+        
+        MessageRandomNumber * messageInit = (MessageRandomNumber *) [data bytes];
+        CCLOG(@"Received random number: %ud, ours %ud", messageInit->randomNumber, ourRandom);
+        bool tie = false;
+        
+        if (messageInit->randomNumber == ourRandom) {
+            CCLOG(@"TIE!");
+            tie = true;
+            ourRandom = arc4random();
+            [self sendRandomNumber];
+        } else if (ourRandom > messageInit->randomNumber) {
+            CCLOG(@"We are player 1");
+            isPlayer1 = YES;
+        } else {
+            CCLOG(@"We are player 2");
+            isPlayer1 = NO;
+            [self.hud showWaitTurn];
+        }
+
+        if (!tie) {
+            receivedRandom = YES;
+            if (gameState == kGameStateWaitingForRandomNumber) {
+                [self setGameState:kGameStateWaitingForStart];
+            }
+            [self tryStartGame];
+        }
+        
+    }
+    else if (message->messageType == kMessageTypeGameBegin)
+    {
+        [self setGameState:kGameStateActive];
+        [self sendTurnPlayer1];
+    }
+    else if (message->messageType == KMessageTypeTurn)
+    {
+        CCLOG(@"Received turn");
+        MessageTurn * messageTurn = (MessageTurn *) [data bytes];
+        turnPlayer1 = messageTurn->turnPlayer1;
+        
+        if (turnPlayer1 == isPlayer1)
+        {
+            CCLOG(@"It's our turn");
+            [self startTurn];
+        }
+    }
+    else if (message->messageType == kMessageTypeMove)
+    {
+        CCLOG(@"Received move");
+        MessageMove * messageMove = (MessageMove *) [data bytes];
+        
+        if (isPlayer1)
+        {
+            for (Unit *unit in player2.Units)
+            {
+                if (CGRectContainsPoint([unit boundingBox], messageMove->from))
+                {
+                    [unit setPosition:messageMove->to];
+                }
+            }
+        }
+        else
+        {
+            for (Unit *unit in player1.Units)
+            {
+                if (CGRectContainsPoint([unit boundingBox], messageMove->from))
+                {
+                    [unit setPosition:messageMove->to];
+                }
+            }
+        }
+    }
+    else if (message->messageType == kMessageTypeAddUnit)
+    {
+        CCLOG(@"Received add unit");
+        
+        MessageAddUnit * messageAddUnit= (MessageAddUnit *) [data bytes];
+        int forPlayer = 0;
+        
+        // If the unit is added for player X and we are player X, nothing to do
+        if (isPlayer1 != messageAddUnit->forPlayer1)
+        {
+            if (messageAddUnit->forPlayer1)
+                forPlayer = 1;
+            else
+                forPlayer = 2;
+            
+            switch (messageAddUnit->type)
+            {
+                case 'k':
+                    [self createUnitOfType:@"Knight" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    break;
+                case 'b':
+                    [self createUnitOfType:@"Boomerang" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    break;
+                case 'w':
+                    [self createUnitOfType:@"Warrior" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    else if (message->messageType == kMessageTypeGameOver)
+    {
+        
+        MessageGameOver * messageGameOver = (MessageGameOver *) [data bytes];
+        CCLOG(@"Received game over with player 1 won: %d", messageGameOver->player1Won);
+        
+        if (messageGameOver->player1Won) {
+            [self endScene:kEndReasonLose];
+        } else {
+            [self endScene:kEndReasonWin];    
+        }
+        
+    }    
+}
+
+//////////////////////////////
+
+- (void)setGameState:(GameState)state {
+    
+    gameState = state;
+    if (gameState == kGameStateWaitingForMatch) {
+        [debugLabel setString:@"Waiting for match"];
+    } else if (gameState == kGameStateWaitingForRandomNumber) {
+        [debugLabel setString:@"Waiting for rand #"];
+    } else if (gameState == kGameStateWaitingForStart) {
+        [debugLabel setString:@"Waiting for start"];
+    } else if (gameState == kGameStateActive) {
+        [debugLabel setString:@"Active"];
+    } else if (gameState == kGameStateDone) {
+        [debugLabel setString:@"Done"];
+    }
+}
+
+// Helper code to show a menu to restart the level
+- (void)endScene:(EndReason)endReason {
+    
+    if (gameState == kGameStateDone) return;
+    [self setGameState:kGameStateDone];
+    
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    NSString *message;
+    if (endReason == kEndReasonWin) {
+        message = @"You win!";
+    } else if (endReason == kEndReasonLose) {
+        message = @"You lose!";
+    }
+    
+    CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"Arial.fnt"];
+    label.scale = 0.1;
+    label.position = ccp(winSize.width/2, 180);
+    [self addChild:label];
+    
+    CCLabelBMFont *restartLabel = [CCLabelBMFont labelWithString:@"Restart" fntFile:@"Arial.fnt"];
+    
+    CCMenuItemLabel *restartItem = [CCMenuItemLabel itemWithLabel:restartLabel target:self selector:@selector(restartTapped:)];
+    restartItem.scale = 0.1;
+    restartItem.position = ccp(winSize.width/2, 140);
+    
+    CCMenu *menu = [CCMenu menuWithItems:restartItem, nil];
+    menu.position = CGPointZero;
+    [self addChild:menu];
+    
+    [restartItem runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
+    [label runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
+    
+    if (isPlayer1) {
+        if (endReason == kEndReasonWin) {
+            [self sendGameOver:true];
+        } else if (endReason == kEndReasonLose) {
+            [self sendGameOver:false];
+        }
+    }
+    
+}
+
+
+- (void)update:(ccTime)dt
+{
+    if (!isPlayer1) return;
     [self setViewpointCenter:_player.position];
+}
+
+- (void)tryStartGame
+{
+
+    if (isPlayer1 && gameState == kGameStateWaitingForStart) {
+        [self setGameState:kGameStateActive];
+        [self sendGameBegin];
+    }
+    
 }
 
 - (void)checkUnitsAvailability
@@ -187,6 +495,8 @@ typedef enum {
     Unit *unit = nil;
     User *currentPlayer = nil;
     
+    char t;
+    
     if (player == 1)
         currentPlayer = player1;
     else if (player == 2)
@@ -199,6 +509,7 @@ typedef enum {
         
         unit = [[Warrior alloc] unitWithLayer:self player:player];
         currentPlayer.Warrior--;
+        t = 'w';
     }
     else if (type == @"Knight")
     {
@@ -207,6 +518,7 @@ typedef enum {
         
         unit = [[Knight alloc] unitWithLayer:self player:player];
         currentPlayer.Knight--;
+        t = 'k';
     }
     else if (type == @"Boomerang")
     {
@@ -215,19 +527,19 @@ typedef enum {
 
         unit = [[Boomerang alloc] unitWithLayer:self player:player];
         currentPlayer.Boomerang--;
+        t = 'b';
     }
     
     CGPoint p = ccp(x,y);
     unit.position = [self positionForTileCoord:p];
     [self addChild:unit];
     
-    /*if (player == 1)
-        [player1 addUnit:unit];
-    else
-        [player2 addUnit:unit];*/
     [currentPlayer addUnit:unit];
     
     [self checkUnitsAvailability];
+    
+    // Send message for the other player
+    [self sendAddUnitAtPosition:unit.position Type:t HP:unit.hp forPlayer:isPlayer1];
     
     return unit;
 }
@@ -254,7 +566,6 @@ typedef enum {
 {
 	[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     [self.hud setDelegate:self];
-    [self startTurn];
 }
 
 - (void)selectAttackingTilesAroundUnit:(Unit *)unit
@@ -380,9 +691,9 @@ typedef enum {
 {
     CGPoint point = CGPointMake(x, y);
     
-    if (turn == TRUE)
+    if (turnPlayer1 == TRUE)
     {
-        for (Unit *unit in player2.units)
+        for (Unit *unit in player2.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], point)) 
             {
@@ -478,7 +789,7 @@ typedef enum {
 
 -(void)setPlayerPosition:(CGPoint)position 
 {
-      //[[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
+    //[[SimpleAudioEngine sharedEngine] playEffect:@"move.caf"];
     [_player moveToward:position];
     [_player popStepAndAnimate];
     
@@ -487,14 +798,14 @@ typedef enum {
 
 - (BOOL)isUnitAtPosition:(CGPoint)touchLocation
 {
-    for (Unit *unit in player1.units)
+    for (Unit *unit in player1.Units)
     {
         if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
         {
             return YES;
         }
     }
-    for (Unit *unit in player2.units)
+    for (Unit *unit in player2.Units)
     {
         if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
         {
@@ -506,7 +817,7 @@ typedef enum {
 
 -(NSMutableArray *) getCurrentPlayerUnitList
 {
-    return player1.units;
+    return player1.Units;
 }
 
 -(void) attackWith:(Unit *)player Against:(Unit *)enemy
@@ -525,10 +836,10 @@ typedef enum {
     if (enemy.hp < 0)
     {
         [self removeChild:enemy cleanup:TRUE];
-        [player2.units removeObject:enemy];
+        [player2.Units removeObject:enemy];
     }
     
-    if ([player2.units count] == 0)
+    if ([player2.Units count] == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Victoire!" message:@"Vous avez gagné!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -550,9 +861,9 @@ typedef enum {
     [self deselectAllTiles:potentialTiles];
     [self checkUnitsAvailability];
     
-    if (turn == TRUE)
+    if (positioningScreen)
     {
-        if (positioningScreen)
+        if (turnPlayer1 == isPlayer1)
         {
             self.hud.unitMenu.visible = NO;
             for (CCSprite *tile in eligibleTiles)
@@ -569,9 +880,15 @@ typedef enum {
             [self setViewpointCenter:touchLocation];
             return;
         }
+        else
+            return;
+    }
+    
+    if (turnPlayer1)
+    {
         if (self.battleScene.visible = YES)
             self.battleScene.visible = NO;
-        for (Unit *unit in player1.units)
+        for (Unit *unit in player1.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
@@ -597,7 +914,7 @@ typedef enum {
             }
         }
         
-        for (Unit *unit in player2.units)
+        for (Unit *unit in player2.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
@@ -622,6 +939,8 @@ typedef enum {
         {
             if (CGRectContainsPoint([tile boundingBox], touchLocation))
             {
+                if (gameState != kGameStateActive) return;
+                [self sendMoveFromPosition:self.player.position toPosition:touchLocation];
                 [self setPlayerPosition:touchLocation];
                 [self setViewpointCenter:_player.position];
                 [self deselectAllTiles:selectedTiles];
@@ -637,44 +956,53 @@ typedef enum {
     //[self.hud.status setString:@"Vous avez gagné"];
 }
 
-// TODO change timer to cocos2d scheduler
-// http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:best_practices
 - (void)removeStatus:(NSTimer *)timer
 {
     [self.hud.status setString:@""];
 }
 
-- (void)startTurn
+-(void)startTurn
 {
-    //[NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(endTurn:) userInfo:nil repeats:YES];
+    
+    // Setup timer to end our turn after 30 seconds
+    
+    // TODO change timer to cocos2d scheduler
+    // http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:best_practices
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
+    
+    // Allow player to end his turn early
     [self.hud showEndTurn];
 }
 
 -(void)endTurn
 {
-    if (turn == TRUE)
+    // If it's currently our turn, end it, else don't do anything
+    if (turnPlayer1 == isPlayer1)
     {
         [self.hud showWaitTurn];
+        
         [self deselectAllTiles:selectedTiles];
         [self deselectAllTiles:attackingTiles];
         [self deselectAllTiles:potentialTiles];
-        for (Unit *unit in player1.units)
+        
+        // Reset unit moves
+        for (Unit *unit in player1.Units)
         {
             [unit setDefaults];
         }
-        turn = FALSE;
-        [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
+        
         if (positioningScreen)
         {
             positioningScreen = FALSE;
             [self deselectEligibleTiles];
         }
+        
         [self removeStatus:nil];
-    }
-    else
-    {
-        turn = TRUE;
-        [self.hud showEndTurn];
+    
+        // Toggle turn
+        turnPlayer1 = !turnPlayer1;
+    
+        [self sendTurnPlayer1];
     }
 }
 

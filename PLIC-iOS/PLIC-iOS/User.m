@@ -10,14 +10,15 @@
 
 @implementation User
 
+@synthesize UserId;
 @synthesize UUID;
-@synthesize description;
-@synthesize id;
-@synthesize username;
-@synthesize latitude;
-@synthesize longitude;
-@synthesize units;
+@synthesize Description;
+@synthesize Username;
+@synthesize Latitude;
+@synthesize Longitude;
+@synthesize Units;
 @synthesize Warrior, Knight, Boomerang;
+@synthesize warriorAvgLife, knightAvgLife, boomerangAvgLife;
 
 - (id)createPlayer:(int)playerId
 {
@@ -30,8 +31,9 @@
 - (void)addUnit:(Unit *)unit
 {
     if (unit != nil)
-        [self.units addObject:unit];
+        [self.Units addObject:unit];
 }
+
 
 
 @end

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "RestKitController.h"
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UITextField *txtName;
 @property (strong, nonatomic) IBOutlet UITextView *txtDescription;
 

@@ -52,14 +52,19 @@
 - (void)getPlayerFromServer
 {
     player = [[User alloc] createPlayer:1];
+    player.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
     //TODO GET FROM SERVER
-    [self.rest getUnitsOfUser:(int)player.UUID];
+    //player.username = @"josephelk";
+    //player.description = @"combattant tres fort";
+    [self.rest getUser:player.UUID];
+    [self setPlayer];
 }
 
 - (void)setPlayer
 {
-    for (User *p in self.rest.units)
+    for (User *p in self.rest.userInfo)
     {
+        NSLog(@"%@", p);
         player.Warrior = p.Warrior;
         player.Knight = p.Knight;
         player.Boomerang = p.Boomerang;
@@ -68,6 +73,9 @@
     player.Warrior = 3;
     player.Knight = 2;
     player.Boomerang = 2;
+    player.warriorAvgLife = 19.5;
+    player.knightAvgLife = 16;
+    player.boomerangAvgLife = 10;
     NSLog(@"setPlayer: Done");
 }
 
@@ -79,8 +87,21 @@
 								   pixelFormat:kEAGLColorFormatRGB565];
     [self.view insertSubview:glView atIndex:10];
     [[CCDirector sharedDirector] setView:glView];
-    [self setPlayer];
     [[CCDirector sharedDirector] runWithScene:[Map scene:player]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"pushToUserInfo"])
+    {
+        UserInfoViewController *userInfoViewController = [segue destinationViewController];
+        userInfoViewController.user = player;
+    }
+    if ([[segue identifier] isEqualToString:@"pushToDebrief"])
+    {
+        DebriefViewController *debriefViewController = [segue destinationViewController];
+        debriefViewController.user = player;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -105,6 +126,8 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
+
+//-(NSUInteger)supportedInterfaceOrientations { return UIInterfaceOrientationMaskLandscape; }
 
 /*
 // Override to support conditional editing of the table view.

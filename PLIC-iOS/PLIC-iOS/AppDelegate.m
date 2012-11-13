@@ -62,6 +62,9 @@
         UUID = [defaults valueForKey:@"UUID"];
     }
     
+    // Connection to the Game Center
+    [[GCHelper sharedInstance] authenticateLocalUser];
+    
 	return YES;
 }
 

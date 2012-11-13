@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GameViewController.h"
 #import "RestKitController.h"
+#import "UserInfoViewController.h"
+#import "DebriefViewController.h"
 
 @interface MasterViewController : UIViewController <MasterControllerDelegate>
 {
