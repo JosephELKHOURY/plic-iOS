@@ -36,14 +36,12 @@ typedef enum {
     [scene addChild: hud];
     layer.hud = hud;
     
-    [layer checkUnitsAvailability];
-    
     BattleScene *battleScene = [BattleScene node];
     [battleScene setVisible:FALSE];
     [scene addChild: battleScene z:50];
     layer.battleScene = battleScene;
     
-    layer.player1 = player;
+    //layer.player1 = player;
     
 	return scene;
 }
@@ -153,10 +151,6 @@ typedef enum {
         positioningScreen = TRUE;
         [self.hud.status setString:@"Placez vos unités sur la carte"];
         
-        [self highlightEligiblePositions:@"Player1Eligible1"];
-        [self highlightEligiblePositions:@"Player1Eligible2"];
-        [self highlightEligiblePositions:@"Player1Eligible3"];
-        
         AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
         [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:delegate.window.rootViewController delegate:self];
         
@@ -189,15 +183,14 @@ typedef enum {
     MessageGameBegin message;
     message.message.messageType = kMessageTypeGameBegin;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameBegin)];
-    [self sendData:data];
-    
+    [self sendData:data];    
 }
 
 - (void)sendTurnPlayer1 {
     
     MessageTurn message;
     message.message.messageType = KMessageTypeTurn;
-    message.turnPlayer1 = TRUE;
+    message.turnPlayer1 = turnPlayer1;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTurn)];
     [self sendData:data];
     
@@ -214,14 +207,14 @@ typedef enum {
     [self sendData:data];
 }
 
-- (void)sendAddUnitAtPosition:(CGPoint)position Type:(char)type HP:(int)hp forPlayer:(bool)player {
+- (void)sendAddUnitAtPosition:(CGPoint)position Type:(char)type HP:(int)hp {
     
     MessageAddUnit message;
     message.message.messageType = kMessageTypeAddUnit;
     message.position = position;
     message.type = type;
     message.hp = hp;
-    message.forPlayer1 = player;
+    message.forPlayer1 = isPlayer1;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageMove)];
     [self sendData:data];
 }
@@ -356,23 +349,32 @@ typedef enum {
         int forPlayer = 0;
         
         // If the unit is added for player X and we are player X, nothing to do
+        
+        CCLOG(@"I am player 1? %d", isPlayer1);
+        CCLOG(@"unit is for player 1? %d", messageAddUnit->forPlayer1);
+        
         if (isPlayer1 != messageAddUnit->forPlayer1)
         {
+            CCLOG(@"I have to add a unit that is not mine");
             if (messageAddUnit->forPlayer1)
                 forPlayer = 1;
             else
                 forPlayer = 2;
             
+            CGPoint p = messageAddUnit->position;
+            CCLOG(@"position X %f Y %f", p.x, p.y);
+            
+            CCLOG(@"forPlayer %d", forPlayer);
             switch (messageAddUnit->type)
             {
                 case 'k':
-                    [self createUnitOfType:@"Knight" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    [self createUnitOfType:@"Knight" AtX:p.x Y:p.y forPlayer:forPlayer];
                     break;
                 case 'b':
-                    [self createUnitOfType:@"Boomerang" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    [self createUnitOfType:@"Boomerang" AtX:p.x Y:p.y forPlayer:forPlayer];
                     break;
                 case 'w':
-                    [self createUnitOfType:@"Warrior" AtX:messageAddUnit->position.x Y:messageAddUnit->position.y forPlayer:forPlayer];
+                    [self createUnitOfType:@"Warrior" AtX:p.x Y:p.y forPlayer:forPlayer];
                     break;
                 default:
                     break;
@@ -464,29 +466,51 @@ typedef enum {
 
 - (void)tryStartGame
 {
-
+    self.player1 = [[User alloc] createPlayer:1];
+    self.player1.Warrior = 3;
+    self.player1.Knight = 2;
+    self.player1.Boomerang = 2;
+    self.player2 = [[User alloc] createPlayer:2];
+    self.player2.Warrior = 2;
+    self.player2.Knight = 1;
+    self.player2.Boomerang = 3;
+    
     if (isPlayer1 && gameState == kGameStateWaitingForStart) {
         [self setGameState:kGameStateActive];
         [self sendGameBegin];
     }
-    
 }
 
 - (void)checkUnitsAvailability
 {
-    self.hud.warriorItem.label.string = [NSString stringWithFormat:@"Warrior (%d)", player1.Warrior];
-    self.hud.knightItem.label.string = [NSString stringWithFormat:@"Knight (%d)", player1.Knight];
-    self.hud.boomerangItem.label.string = [NSString stringWithFormat:@"Boomerang (%d)", player1.Boomerang];
+    User *currentPlayer = nil;
+    
+    if (isPlayer1)
+    {
+        CCLOG(@"checkUnitsAvailability isPlayer1");
+        currentPlayer = self.player1;
+    }
+    else
+    {
+        CCLOG(@"checkUnitsAvailability isPlayer2");
+        currentPlayer = self.player2;
+    }
+    
+    CCLOG(@"checkUnitsAvailability I have %d warriors", currentPlayer.Warrior);
+    
+    self.hud.warriorItem.label.string = [NSString stringWithFormat:@"Warrior (%d)", currentPlayer.Warrior];
+    self.hud.knightItem.label.string = [NSString stringWithFormat:@"Knight (%d)", currentPlayer.Knight];
+    self.hud.boomerangItem.label.string = [NSString stringWithFormat:@"Boomerang (%d)", currentPlayer.Boomerang];
     
     self.hud.warriorItem.isEnabled = YES;
     self.hud.knightItem.isEnabled = YES;
     self.hud.boomerangItem.isEnabled = YES;
     
-    if (player1.Warrior == 0)
+    if (currentPlayer.Warrior == 0)
         self.hud.warriorItem.isEnabled = NO;
-    if (player1.Knight == 0)
+    if (currentPlayer.Knight == 0)
         self.hud.knightItem.isEnabled = NO;
-    if (player1.Boomerang == 0)
+    if (currentPlayer.Boomerang == 0)
         self.hud.boomerangItem.isEnabled = NO;
 }
 
@@ -539,13 +563,22 @@ typedef enum {
     [self checkUnitsAvailability];
     
     // Send message for the other player
-    [self sendAddUnitAtPosition:unit.position Type:t HP:unit.hp forPlayer:isPlayer1];
+    [self sendAddUnitAtPosition:p Type:t HP:unit.hp];
     
     return unit;
 }
 
 -(Unit *)createUnitOfType:(NSString *)type AtPosition:(CGPoint)p forPlayer:(int)player
 {
+    return [self createUnitOfType:type AtX:p.x Y:p.y forPlayer:player];
+}
+
+-(Unit *)createUnitForCurrentPlayerOfType:(NSString *)type AtPosition:(CGPoint)p
+{
+    int player = 2;
+    if (isPlayer1) {
+        player = 1;
+    }
     return [self createUnitOfType:type AtX:p.x Y:p.y forPlayer:player];
 }
 
@@ -859,7 +892,6 @@ typedef enum {
     touchLocation = [self convertToNodeSpace:touchLocation];
 
     [self deselectAllTiles:potentialTiles];
-    [self checkUnitsAvailability];
     
     if (positioningScreen)
     {
@@ -871,6 +903,7 @@ typedef enum {
                 if (CGRectContainsPoint([tile boundingBox], touchLocation))
                 {
                     CGPoint p = [self tileCoordForPosition:touchLocation];
+                    [self checkUnitsAvailability];
                     [self.hud showUnitMenuWithPosition:p];
                     //CGPoint t = [self positionForTileCoord:p];
                     //[self setEligibleTileAtX:t.x AtY:t.y];
@@ -969,6 +1002,22 @@ typedef enum {
     // TODO change timer to cocos2d scheduler
     // http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:best_practices
     [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
+    
+    if (positioningScreen)
+    {
+        if (isPlayer1)
+        {
+            [self highlightEligiblePositions:@"Player1Eligible1"];
+            [self highlightEligiblePositions:@"Player1Eligible2"];
+            [self highlightEligiblePositions:@"Player1Eligible3"];
+        }
+        else
+        {
+            [self highlightEligiblePositions:@"Player2Eligible1"];
+            [self highlightEligiblePositions:@"Player2Eligible2"];
+            [self highlightEligiblePositions:@"Player2Eligible3"];
+        }
+    }
     
     // Allow player to end his turn early
     [self.hud showEndTurn];

@@ -104,7 +104,7 @@
 
 -(void)placeWarrior
 {
-    if ([delegate createUnitOfType:@"Warrior" AtPosition:unitPosition forPlayer:1] != nil)
+    if ([delegate createUnitForCurrentPlayerOfType:@"Warrior" AtPosition:unitPosition] != nil)
     {
         [delegate deselectEligibleTileAtPosition:unitPosition];
     }
@@ -113,7 +113,7 @@
 
 -(void)placeKnight
 {
-    if ([delegate createUnitOfType:@"Knight" AtPosition:unitPosition forPlayer:1] != nil)
+    if ([delegate createUnitForCurrentPlayerOfType:@"Knight" AtPosition:unitPosition] != nil)
     {
         [delegate deselectEligibleTileAtPosition:unitPosition];
     }
@@ -122,7 +122,7 @@
 
 -(void)placeBoomerang
 {
-    if ([delegate createUnitOfType:@"Boomerang" AtPosition:unitPosition forPlayer:1] != nil)
+    if ([delegate createUnitForCurrentPlayerOfType:@"Boomerang" AtPosition:unitPosition] != nil)
     {
         [delegate deselectEligibleTileAtPosition:unitPosition];
     }

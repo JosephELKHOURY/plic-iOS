@@ -63,5 +63,8 @@
   <object name="Player1Eligible1" x="11" y="84" width="273" height="145"/>
   <object name="Player1Eligible2" x="150" y="8" width="144" height="64"/>
   <object name="Player1Eligible3" x="109" y="305" width="177" height="135"/>
+  <object name="Player2Eligible1" x="718" y="240" width="273" height="145"/>
+  <object name="Player2Eligible2" x="847" y="55" width="144" height="64"/>
+  <object name="Player2Eligible3" x="613" y="59" width="177" height="135"/>
  </objectgroup>
 </map>

@@ -17,7 +17,7 @@
 
 -(void)endTurn;
 -(NSMutableArray *) getCurrentPlayerUnitList;
--(Unit *)createUnitOfType:(NSString *)type AtPosition:(CGPoint)p forPlayer:(int)player;
+-(Unit *)createUnitForCurrentPlayerOfType:(NSString *)type AtPosition:(CGPoint)p;
 -(void)deselectEligibleTiles;
 -(void)deselectEligibleTileAtPosition:(CGPoint)pos;
 
