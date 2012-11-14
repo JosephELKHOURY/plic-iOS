@@ -215,14 +215,17 @@ typedef enum {
     message.type = type;
     message.hp = hp;
     message.forPlayer1 = isPlayer1;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageMove)];
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageAddUnit)];
     [self sendData:data];
 }
 
-- (void)sendAttack {
+- (void)sendAttackFrom:(CGPoint)from To:(CGPoint)to {
     
     MessageAttack message;
     message.message.messageType = kMessageTypeAttack;
+    message.from = from;
+    message.to = to;
+    message.fromPlayer1 = isPlayer1;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageAttack)];
     [self sendData:data];
     
@@ -326,7 +329,9 @@ typedef enum {
             {
                 if (CGRectContainsPoint([unit boundingBox], messageMove->from))
                 {
-                    [unit setPosition:messageMove->to];
+                    [unit moveToward:messageMove->to];
+                    [unit popStepAndAnimate];
+                    unit.state = HASMOVED;
                 }
             }
         }
@@ -336,7 +341,9 @@ typedef enum {
             {
                 if (CGRectContainsPoint([unit boundingBox], messageMove->from))
                 {
-                    [unit setPosition:messageMove->to];
+                    [unit moveToward:messageMove->to];
+                    [unit popStepAndAnimate];
+                    unit.state = HASMOVED;
                 }
             }
         }
@@ -380,6 +387,32 @@ typedef enum {
                     break;
             }
         }
+    }
+    else if (message->messageType == kMessageTypeAttack)
+    {
+        CCLOG(@"Received attack");
+        MessageAttack * messageAttack = (MessageAttack *) [data bytes];
+        Unit *from;
+        Unit *to;
+        
+        for (Unit *unit in player1.Units)
+        {
+            if (CGRectContainsPoint([unit boundingBox], messageAttack->from))
+                from = unit;
+            else if (CGRectContainsPoint([unit boundingBox], messageAttack->to))
+                to = unit;
+        }
+        for (Unit *unit in player2.Units)
+        {
+            if (CGRectContainsPoint([unit boundingBox], messageAttack->from))
+                from = unit;
+            else if (CGRectContainsPoint([unit boundingBox], messageAttack->to))
+                to = unit;
+        }
+        
+        CCLOG(@"from: %@ to: %@", from.name, to.name);
+        
+        [self attackWith:from Against:to FromPlayer1:messageAttack->fromPlayer1];
     }
     else if (message->messageType == kMessageTypeGameOver)
     {
@@ -563,7 +596,8 @@ typedef enum {
     [self checkUnitsAvailability];
     
     // Send message for the other player
-    [self sendAddUnitAtPosition:p Type:t HP:unit.hp];
+    if ((isPlayer1 && player == 1) || (!isPlayer1 && player == 2))
+        [self sendAddUnitAtPosition:p Type:t HP:unit.hp];
     
     return unit;
 }
@@ -722,18 +756,19 @@ typedef enum {
 
 -(BOOL)isEnemyAtX:(float)x AtY:(float)y
 {
-    CGPoint point = CGPointMake(x, y);
+    CGPoint point = ccp(x, y);
     
-    if (turnPlayer1 == TRUE)
+    User *otherPlayer = player2;
+    if (!isPlayer1)
+        otherPlayer = player1;
+    
+    for (Unit *unit in otherPlayer.Units)
     {
-        for (Unit *unit in player2.Units)
+        if (CGRectContainsPoint([unit boundingBox], point))
         {
-            if (CGRectContainsPoint([unit boundingBox], point)) 
-            {
-                return TRUE;
-            }
-            return FALSE;
+            return TRUE;
         }
+        return FALSE;
     }
     return FALSE;
 }
@@ -853,11 +888,16 @@ typedef enum {
     return player1.Units;
 }
 
--(void) attackWith:(Unit *)player Against:(Unit *)enemy
+-(void) attackWith:(Unit *)player Against:(Unit *)enemy FromPlayer1:(bool)fromPlayer1
 {
     //BATTLE SCENE
     //[self.battleScene startBattleWith:player Against:enemy];
     //return;
+    CCLOG(@"in attackWith");
+    User *opponent = player1;
+    
+    if (fromPlayer1)
+        opponent = player2;
     
     enemy.hp -= player.attack;
     player.state = HASATTACKED;
@@ -865,14 +905,15 @@ typedef enum {
     attackEffect.position = ccp(enemy.position.x,enemy.position.y + 25);
     [self addChild:attackEffect];
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(removeAttackEffect:) userInfo:nil repeats:NO];
+    [self deselectAllTiles:attackingTiles];
     
     if (enemy.hp < 0)
     {
         [self removeChild:enemy cleanup:TRUE];
-        [player2.Units removeObject:enemy];
+        [opponent.Units removeObject:enemy];
     }
     
-    if ([player2.Units count] == 0)
+    if ([opponent.Units count] == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Victoire!" message:@"Vous avez gagné!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
@@ -917,11 +958,19 @@ typedef enum {
             return;
     }
     
-    if (turnPlayer1)
+    if (turnPlayer1 == isPlayer1)
     {
         if (self.battleScene.visible = YES)
             self.battleScene.visible = NO;
-        for (Unit *unit in player1.Units)
+        User *currentPlayer = player1;
+        User *otherPlayer = player2;
+        if (!isPlayer1)
+        {
+            currentPlayer = player2;
+            otherPlayer = player1;
+        }
+
+        for (Unit *unit in currentPlayer.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
@@ -947,7 +996,7 @@ typedef enum {
             }
         }
         
-        for (Unit *unit in player2.Units)
+        for (Unit *unit in otherPlayer.Units)
         {
             if (CGRectContainsPoint([unit boundingBox], touchLocation)) 
             {
@@ -956,14 +1005,15 @@ typedef enum {
                 {
                     if ([self isSpriteInArray:attackingTiles atPos:unit.position])
                     {
-                        [self attackWith:self.player Against:unit];
-                        [self deselectAllTiles:attackingTiles];
+                        CCLOG(@"Attacking unit");
+                        [self sendAttackFrom:self.player.position To:unit.position];
+                        [self attackWith:self.player Against:unit FromPlayer1:isPlayer1];
                     }
                     return;
                 }
                 else
                 {
-                    [self.hud.status setString:@"L'unité a déjà été attaquée!"];
+                    [self.hud.status setString:@"L'unité a déjà attaqué!"];
                     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(removeStatus:) userInfo:nil repeats:NO];
                 }
             }
@@ -1001,7 +1051,7 @@ typedef enum {
     
     // TODO change timer to cocos2d scheduler
     // http://www.cocos2d-iphone.org/wiki/doku.php/prog_guide:best_practices
-    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
+    //[NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(endTurn) userInfo:nil repeats:NO];
     
     if (positioningScreen)
     {
@@ -1036,6 +1086,10 @@ typedef enum {
         
         // Reset unit moves
         for (Unit *unit in player1.Units)
+        {
+            [unit setDefaults];
+        }
+        for (Unit *unit in player2.Units)
         {
             [unit setDefaults];
         }

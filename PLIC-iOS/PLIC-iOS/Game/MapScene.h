@@ -69,6 +69,9 @@ typedef struct {
 
 typedef struct {
     Message message;
+    CGPoint from;
+    CGPoint to;
+    bool fromPlayer1;
 } MessageAttack;
 
 typedef struct {
