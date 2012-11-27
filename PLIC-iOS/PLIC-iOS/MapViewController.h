@@ -33,6 +33,7 @@
     int counter;
     ARViewController *cameraViewController;
     UIView *infoView;
+    User *player;
 }
 @property(nonatomic)	IBOutlet MKMapView *mapView;
 @property(nonatomic)	NSString *currentLatitude;

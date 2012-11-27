@@ -67,7 +67,7 @@
     Annotation *player;
     CLLocationCoordinate2D workingCoordinate;
     
-    for (User *u in self.rest.data)
+    /*for (User *u in self.rest.data)
     {
         if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
@@ -79,7 +79,30 @@
             [player setAnnotationType:AnnotationTypeApple];
             [mapView addAnnotation:player];
         }
-    }
+    }*/
+    workingCoordinate.latitude = 48.860339;
+    workingCoordinate.longitude = 2.337599;
+    player = [[Annotation alloc] initWithCoordinate:workingCoordinate];
+    [player setTitle:@"Camille"];
+    [player setSubtitle:@""];
+    [player setAnnotationType:AnnotationTypeApple];
+    [mapView addAnnotation:player];
+    
+    workingCoordinate.latitude = 48.8583;
+    workingCoordinate.longitude = 2.2945;
+    player = [[Annotation alloc] initWithCoordinate:workingCoordinate];
+    [player setTitle:@"Francois"];
+    [player setSubtitle:@""];
+    [player setAnnotationType:AnnotationTypeApple];
+    [mapView addAnnotation:player];
+    
+    workingCoordinate.latitude = 48.891894;
+    workingCoordinate.longitude = 2.282195;
+    player = [[Annotation alloc] initWithCoordinate:workingCoordinate];
+    [player setTitle:@"Florian"];
+    [player setSubtitle:@""];
+    [player setAnnotationType:AnnotationTypeApple];
+    [mapView addAnnotation:player];
 }
 
 -(void)addBonuses
@@ -179,22 +202,35 @@
     infoView = nil;
 }
 
+- (void)setPlayer
+{
+    player = [[User alloc] createPlayer:1];
+    for (User *p in self.rest.userInfo)
+    {
+        NSLog(@"%@", p);
+        player.Warrior = p.Warrior;
+        player.Knight = p.Knight;
+        player.Boomerang = p.Boomerang;
+    }
+    //JUST FOR TESTING WITHOUT A SERVER
+    player.Warrior = 3;
+    player.Knight = 2;
+    player.Boomerang = 2;
+    player.warriorAvgLife = 19.5;
+    player.knightAvgLife = 16;
+    player.boomerangAvgLife = 10;
+    NSLog(@"setPlayer: Done");
+}
+
 - (IBAction)challengeButtonClicked:(id)sender
 {
+    [self setPlayer];
     [self dismissModalViewControllerAnimated:YES];
 
     CCGLView *glView = [CCGLView viewWithFrame:self.view.bounds
 								   pixelFormat:kEAGLColorFormatRGB565];
     [self.view insertSubview:glView atIndex:10];
     [[CCDirector sharedDirector] setView:glView];
-    [self.rest getUnits];
-    User *player = [[User alloc] createPlayer:1];
-    for (User *p in self.rest.units)
-    {
-        player.Warrior = p.Warrior;
-        player.Knight = p.Knight;
-        player.Boomerang = p.Boomerang;
-    }
     [[CCDirector sharedDirector] runWithScene:[Map scene:player]];
 }
 
@@ -207,7 +243,7 @@
     
     //[self.rest getUsers];
     
-    for (User *u in self.rest.data)
+    /*for (User *u in self.rest.data)
     {
         if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
@@ -218,7 +254,28 @@
             tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:u.Username locationDescription:u.Description];
             [locationArray addObject:tempCoordinate];
         }
-    }
+    }*/
+    
+    double latitude = 48.860339;
+    double longitude = 2.337599;
+    
+    tempLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:@"Camille" locationDescription:@""];
+    [locationArray addObject:tempCoordinate];
+    
+    latitude = 48.8583;
+    longitude = 2.2945;
+    
+    tempLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:@"Francois" locationDescription:@""];
+    [locationArray addObject:tempCoordinate];
+    
+    latitude = 48.891894;
+    longitude = 2.282195;
+    
+    tempLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:@"Florian" locationDescription:@""];
+    [locationArray addObject:tempCoordinate];
     
     //ADD BONUSES HERE TOO
     
@@ -242,6 +299,7 @@
     [mapView removeAnnotation:user]; 
     user.coordinate = workingCoordinate;
     [mapView addAnnotation:user];
+    //[mapView setCenterCoordinate:workingCoordinate];
     
     counter++;
     if (((int)roundf(user.coordinate.latitude) == 49) && ((int)roundf(user.coordinate.longitude) == 2) && (counter == 0))

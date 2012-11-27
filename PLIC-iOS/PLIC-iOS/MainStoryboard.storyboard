@@ -65,7 +65,7 @@
                                     <segue destination="bJg-g6-uEb" kind="push" id="vR1-5k-VlP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kt2-TU-1Wb">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kt2-TU-1Wb">
                                 <rect key="frame" x="394" y="9" width="72" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -122,7 +122,7 @@
                                     <segue destination="tZ2-KG-MJR" kind="push" id="wjo-Qy-Mch"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fdb-R3-NPQ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fdb-R3-NPQ">
                                 <rect key="frame" x="285" y="9" width="101" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -732,6 +732,14 @@
     <classes>
         <class className="DebriefViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DebriefViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lifeBoomerang" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lifeKnight" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lifeWarrior" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="qteBommerang" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="qteKnight" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="qteWarrior" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="FBProfilePictureView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBProfilePictureView.h"/>
@@ -775,7 +783,7 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
-        <class className="RegisterViewController" superclassName="UIViewController">
+        <class className="RegisterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
             <relationships>
                 <relationship kind="action" name="btnRegister:"/>
@@ -789,6 +797,16 @@
             <relationships>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="UserInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserInfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveInfo:"/>
+                <relationship kind="action" name="updateInfo:"/>
+                <relationship kind="outlet" name="btnSave" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="txtDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="txtName" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>
