@@ -163,6 +163,7 @@ static GCHelper *sharedHelper = nil;
 // The user has cancelled matchmaking
 - (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
     [presentingViewController dismissModalViewControllerAnimated:YES];
+    [[CCDirector sharedDirector] popScene];
 }
 
 // Matchmaking has failed with an error

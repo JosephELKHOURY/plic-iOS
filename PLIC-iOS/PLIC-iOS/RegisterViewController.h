@@ -15,6 +15,6 @@
 @property (strong, nonatomic) IBOutlet UITextView *txtDescription;
 
 - (IBAction)cancel;
-- (IBAction)btnRegister:(id)sender;
+- (IBAction)register:(id)sender;
 
 @end

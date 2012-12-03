@@ -410,6 +410,16 @@
 		DCDD08B91636FB6200325EF3 /* chateau.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDD08B81636FB6200325EF3 /* chateau.png */; };
 		DCDD2707164BEDD90008928D /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD2706164BEDD90008928D /* GCHelper.m */; };
 		DCDD270A164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */; };
+		DCE8B450166D054F00F627DC /* button_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B44A166D054F00F627DC /* button_back.png */; };
+		DCE8B451166D054F00F627DC /* button_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B44B166D054F00F627DC /* button_back@2x.png */; };
+		DCE8B452166D054F00F627DC /* button_challenge.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B44C166D054F00F627DC /* button_challenge.png */; };
+		DCE8B453166D054F00F627DC /* button_challenge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B44D166D054F00F627DC /* button_challenge@2x.png */; };
+		DCE8B454166D054F00F627DC /* button_close_dialog.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B44E166D054F00F627DC /* button_close_dialog.png */; };
+		DCE8B455166D054F00F627DC /* button_close_dialog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B44F166D054F00F627DC /* button_close_dialog@2x.png */; };
+		DCE8B457166D0A0B00F627DC /* bonus.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B456166D0A0B00F627DC /* bonus.png */; };
+		DCE8B45E166D288800F627DC /* RoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE8B45D166D288700F627DC /* RoundedRectView.m */; };
+		DCE8B461166D2FE400F627DC /* apropos@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B45F166D2FE300F627DC /* apropos@2x.jpg */; };
+		DCE8B462166D2FE400F627DC /* regles@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DCE8B460166D2FE300F627DC /* regles@2x.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -915,6 +925,17 @@
 		DCDD2706164BEDD90008928D /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCHelper.m; path = Game/GCHelper.m; sourceTree = "<group>"; };
 		DCDD2708164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GKMatchmakerViewController-LandscapeOnly.h"; path = "Game/GKMatchmakerViewController-LandscapeOnly.h"; sourceTree = "<group>"; };
 		DCDD2709164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GKMatchmakerViewController-LandscapeOnly.m"; path = "Game/GKMatchmakerViewController-LandscapeOnly.m"; sourceTree = "<group>"; };
+		DCE8B44A166D054F00F627DC /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_back.png; path = Resources/button_back.png; sourceTree = "<group>"; };
+		DCE8B44B166D054F00F627DC /* button_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_back@2x.png"; path = "Resources/button_back@2x.png"; sourceTree = "<group>"; };
+		DCE8B44C166D054F00F627DC /* button_challenge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_challenge.png; path = Resources/button_challenge.png; sourceTree = "<group>"; };
+		DCE8B44D166D054F00F627DC /* button_challenge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_challenge@2x.png"; path = "Resources/button_challenge@2x.png"; sourceTree = "<group>"; };
+		DCE8B44E166D054F00F627DC /* button_close_dialog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_close_dialog.png; path = Resources/button_close_dialog.png; sourceTree = "<group>"; };
+		DCE8B44F166D054F00F627DC /* button_close_dialog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_close_dialog@2x.png"; path = "Resources/button_close_dialog@2x.png"; sourceTree = "<group>"; };
+		DCE8B456166D0A0B00F627DC /* bonus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bonus.png; path = Resources/bonus.png; sourceTree = "<group>"; };
+		DCE8B45C166D288600F627DC /* RoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedRectView.h; sourceTree = "<group>"; };
+		DCE8B45D166D288700F627DC /* RoundedRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedRectView.m; sourceTree = "<group>"; };
+		DCE8B45F166D2FE300F627DC /* apropos@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "apropos@2x.jpg"; path = "Resources/apropos@2x.jpg"; sourceTree = "<group>"; };
+		DCE8B460166D2FE300F627DC /* regles@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "regles@2x.jpg"; path = "Resources/regles@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1019,6 +1040,8 @@
 		6EC7579115A07EFE00687754 /* PLIC-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DCE8B45C166D288600F627DC /* RoundedRectView.h */,
+				DCE8B45D166D288700F627DC /* RoundedRectView.m */,
 				6EC75B1B15A07FEC00687754 /* ARKit */,
 				6EC75B0515A07FC600687754 /* Game */,
 				6EC7592215A07F4700687754 /* libs */,
@@ -1076,6 +1099,15 @@
 		6EC7579215A07EFE00687754 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DCE8B45F166D2FE300F627DC /* apropos@2x.jpg */,
+				DCE8B460166D2FE300F627DC /* regles@2x.jpg */,
+				DCE8B456166D0A0B00F627DC /* bonus.png */,
+				DCE8B44A166D054F00F627DC /* button_back.png */,
+				DCE8B44B166D054F00F627DC /* button_back@2x.png */,
+				DCE8B44C166D054F00F627DC /* button_challenge.png */,
+				DCE8B44D166D054F00F627DC /* button_challenge@2x.png */,
+				DCE8B44E166D054F00F627DC /* button_close_dialog.png */,
+				DCE8B44F166D054F00F627DC /* button_close_dialog@2x.png */,
 				B31F490616525C5C00FE0A7C /* Default.png */,
 				B31F490716525C5C00FE0A7C /* Default@2x.png */,
 				DCDD08B81636FB6200325EF3 /* chateau.png */,
@@ -1984,6 +2016,15 @@
 				DCDD08B91636FB6200325EF3 /* chateau.png in Resources */,
 				B31F490816525C5C00FE0A7C /* Default.png in Resources */,
 				B31F490916525C5C00FE0A7C /* Default@2x.png in Resources */,
+				DCE8B450166D054F00F627DC /* button_back.png in Resources */,
+				DCE8B451166D054F00F627DC /* button_back@2x.png in Resources */,
+				DCE8B452166D054F00F627DC /* button_challenge.png in Resources */,
+				DCE8B453166D054F00F627DC /* button_challenge@2x.png in Resources */,
+				DCE8B454166D054F00F627DC /* button_close_dialog.png in Resources */,
+				DCE8B455166D054F00F627DC /* button_close_dialog@2x.png in Resources */,
+				DCE8B457166D0A0B00F627DC /* bonus.png in Resources */,
+				DCE8B461166D2FE400F627DC /* apropos@2x.jpg in Resources */,
+				DCE8B462166D2FE400F627DC /* regles@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2036,6 +2077,7 @@
 				DCDD08B71636FA4100325EF3 /* UserInfoViewController.m in Sources */,
 				DCDD2707164BEDD90008928D /* GCHelper.m in Sources */,
 				DCDD270A164BFE290008928D /* GKMatchmakerViewController-LandscapeOnly.m in Sources */,
+				DCE8B45E166D288800F627DC /* RoundedRectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

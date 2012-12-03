@@ -9,7 +9,7 @@
 #import "RestKitController.h"
 
 @implementation RestKitController
-@synthesize data, bonuses, units, userInfo;
+@synthesize users, bonuses, units, userInfo;
 @synthesize mapDelegate, masterDelegate;
 
 static RestKitController* singleton = nil;
@@ -95,6 +95,7 @@ static RestKitController* singleton = nil;
     [router routeClass:[User class] toResourcePath:@"/users/" forMethod:RKRequestMethodPOST];
     [[RKObjectManager sharedManager] postObject:user delegate:self]; 
     [RKObjectManager sharedManager].router = router;
+    [masterDelegate getPlayerFromServer];
 }
 
 - (void)markBonusAsTaken:(NSObject *)bonus
@@ -118,6 +119,7 @@ static RestKitController* singleton = nil;
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
 {
     NSLog(@"Error: %@", [error localizedDescription]);
+    [masterDelegate pushToRegister];
 }
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
@@ -127,11 +129,11 @@ static RestKitController* singleton = nil;
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
-    NSLog(@"BLABLA objects[%d]", [objects count]);
+    NSLog(@"objects[%d]", [objects count]);
     if ([objectLoader wasSentToResourcePath:@"/users"]) 
     {
         NSLog(@"objects[%d]", [objects count]);
-        data = [NSMutableArray arrayWithArray:objects];
+        users = [NSMutableArray arrayWithArray:objects];
         [mapDelegate addUsers];
     }
     else if ([objectLoader wasSentToResourcePath:@"/bonuses"])

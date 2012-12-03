@@ -16,6 +16,9 @@
 #import "GameViewController.h"
 #import "User.h"
 #import "RestKitController.h"
+#import "MasterViewController.h"
+
+@protocol MasterDelegate;
 
 @interface MapViewController : UIViewController <MyCLControllerDelegate, ARLocationDelegate, MapControllerDelegate>
 {
@@ -34,6 +37,8 @@
     ARViewController *cameraViewController;
     UIView *infoView;
     User *player;
+    id<MasterDelegate> delegate;
+    NSMutableArray *locationArray;
 }
 @property(nonatomic)	IBOutlet MKMapView *mapView;
 @property(nonatomic)	NSString *currentLatitude;
@@ -41,6 +46,7 @@
 @property (nonatomic)   ARViewController *cameraViewController;
 @property (nonatomic)   UIView *infoView;
 @property (strong, nonatomic) RestKitController *rest;
+@property (nonatomic) id<MasterDelegate> delegate;
 
 
 -(void)getRouteInformationWithSourceLatitude:(double)source_latitude SourceLongitude:(double)source_longitude 

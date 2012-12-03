@@ -40,8 +40,8 @@
     [arc updateDebugMode:![arc debugMode]];
     
     UIButton *closeBtn = [[UIButton alloc] init];
-    UIImage *img = [UIImage imageNamed:@"retour.png"];
-    closeBtn.frame = CGRectMake(5, 5, 60, 30);
+    UIImage *img = [UIImage imageNamed:@"button_back.png"];
+    closeBtn.frame = CGRectMake(5, 5, 74, 30);
     [closeBtn setImage:img forState:UIControlStateNormal];
     
    // UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];

@@ -36,7 +36,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)btnRegister:(id)sender
+- (IBAction)register:(id)sender
 {
     User *user = [[User alloc] init];
     user.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
@@ -44,6 +44,7 @@
     user.Description = self.txtDescription.text;
     RestKitController *rest = [RestKitController getInstance];
     [rest createUser:user];
+    [self cancel];
 }
 
 - (void)didReceiveMemoryWarning

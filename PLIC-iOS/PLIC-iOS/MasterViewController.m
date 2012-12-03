@@ -31,15 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
     self.rest = [RestKitController getInstance];
     self.rest.masterDelegate = self;
     [self.rest setupMappingAndRoutes];
-    // CHECK IF USER IS REGISTERED
-    // GET ALL USERS AND CHECK FOR UUID
-    // IF EXISTS, DO NOTHING
-    // IF NOT, OPEN RegisterViewController
     [self getPlayerFromServer];
- 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidUnload
@@ -49,19 +45,23 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)pushToRegister
+{
+    [self performSegueWithIdentifier:@"pushToRegister" sender:self];
+}
+
 - (void)getPlayerFromServer
 {
+    [self startLoading];
     player = [[User alloc] createPlayer:1];
     player.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
-    //TODO GET FROM SERVER
-    //player.username = @"josephelk";
-    //player.description = @"combattant tres fort";
     [self.rest getUser:player.UUID];
-    [self setPlayer];
+    //[self setPlayer];
 }
 
 - (void)setPlayer
 {
+    [self stopLoading];
     for (User *p in self.rest.userInfo)
     {
         NSLog(@"%@", p);
@@ -102,7 +102,50 @@
         DebriefViewController *debriefViewController = [segue destinationViewController];
         debriefViewController.user = player;
     }
+    if ([[segue identifier] isEqualToString:@"pushToMap"])
+    {
+        MapViewController *mapViewController = [segue destinationViewController];
+        mapViewController.delegate = self;
+    }
 }
+
+-(void)startLoading
+{
+	@try
+	{
+        if (!loadingView)
+        {
+            loadingView = [[RoundedRectView alloc] initWithFrame:CGRectMake(10, 10, 460, 280)];
+            activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            [activityView setCenter:CGPointMake(loadingView.frame.size.width/2, loadingView.frame.size.height/2)];
+            [loadingView addSubview:activityView];
+            [self.view addSubview:loadingView];
+        }
+        [loadingView setHidden:NO];
+		[activityView startAnimating];
+	}
+	@catch(NSException *ex)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@",ex] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		[alert show];
+	}
+	
+}
+
+-(void)stopLoading
+{
+	@try
+	{
+		[activityView stopAnimating];
+		[loadingView setHidden:YES];
+	}
+	@catch(NSException *ex)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@",ex] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		[alert show];
+	}
+}
+
 
 - (void) viewWillAppear:(BOOL)animated
 {

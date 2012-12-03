@@ -22,6 +22,8 @@
 
 @protocol MasterControllerDelegate <NSObject>
 
+- (void)pushToRegister;
+- (void)getPlayerFromServer;
 - (void)setPlayer;
 
 @end
@@ -34,7 +36,7 @@
     id<MasterControllerDelegate> masterDelegate;
 }
 
-@property (strong, nonatomic) NSMutableArray *data;
+@property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) NSMutableArray *bonuses;
 @property (strong, nonatomic) NSMutableArray *units;
 @property (strong, nonatomic) NSMutableArray *userInfo;

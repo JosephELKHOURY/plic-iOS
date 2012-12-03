@@ -20,6 +20,7 @@
 	NSString *title;
     NSString *description;
 	NSString *subtitle;
+    bool isBonus;
 }
 
 - (NSUInteger) hash;
@@ -31,6 +32,7 @@
 @property (nonatomic, strong)	NSString *title;
 @property (nonatomic, strong)	NSString *description;
 @property (nonatomic, copy)		NSString *subtitle;
+@property (nonatomic) bool isBonus;
 @property (nonatomic) double	radialDistance;
 @property (nonatomic) double	inclination;
 @property (nonatomic) double	azimuth;

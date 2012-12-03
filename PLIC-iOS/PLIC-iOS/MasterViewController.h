@@ -11,14 +11,22 @@
 #import "RestKitController.h"
 #import "UserInfoViewController.h"
 #import "DebriefViewController.h"
+#import "MapViewController.h"
+#import "RoundedRectView.h"
 
-@interface MasterViewController : UIViewController <MasterControllerDelegate>
+@protocol MasterDelegate <NSObject>
+
+-(IBAction)goJeu;
+
+@end
+
+@interface MasterViewController : UIViewController <MasterControllerDelegate, MasterDelegate>
 {
     User *player;
+    RoundedRectView *loadingView;
+	UIActivityIndicatorView *activityView;
 }
 
 @property (strong, nonatomic) RestKitController *rest;
-
--(IBAction)goJeu;
 
 @end

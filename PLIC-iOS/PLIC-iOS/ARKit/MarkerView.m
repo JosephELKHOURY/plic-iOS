@@ -53,7 +53,7 @@
 		[distLbl setBackgroundColor: [UIColor colorWithWhite:.3 alpha:BOX_ALPHA]];
 		[distLbl setTextColor:		[UIColor whiteColor]];
 		[distLbl setTextAlignment:	UITextAlignmentCenter];
-		[distLbl setText:			[NSString stringWithFormat:@"%d", [coordinate distanceFromOrigin]]];
+		[distLbl setText:			[NSString stringWithFormat:@"%f", [coordinate distanceFromOrigin]]];
 		[distLbl sizeToFit];
         
         
@@ -66,6 +66,9 @@
 		
 		UIImageView *pointView	= [[UIImageView alloc] initWithFrame:CGRectZero];
 		[pointView setImage:[UIImage imageNamed:@"location.png"]];
+        
+        if (coordinate.isBonus)
+            [pointView setImage:[UIImage imageNamed:@"bonus.png"]];
         
 		[pointView setFrame:	CGRectMake((int)(BOX_WIDTH / 2.0 - [pointView image].size.width / 2.0), 
                                            (int)(BOX_HEIGHT / 2.0 - [pointView image].size.height / 2.0), 

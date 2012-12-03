@@ -16,6 +16,7 @@
 @synthesize title;
 @synthesize description;
 @synthesize subtitle;
+@synthesize isBonus;
 
 + (ARCoordinate *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
 	
