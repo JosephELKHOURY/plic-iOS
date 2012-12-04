@@ -25,7 +25,7 @@ typedef enum {
 @synthesize status;
 @synthesize rest;
 
-+(id) scene:(User *)player
++(id) sceneWithPlayer1:(User *)player1 Player2:(User *)player2
 {
 	CCScene *scene = [CCScene node];
 
@@ -41,7 +41,8 @@ typedef enum {
     [scene addChild: battleScene z:50];
     layer.battleScene = battleScene;
     
-    //layer.player1 = player;
+    layer.player1 = player1;
+    layer.player2 = player2;
     
 	return scene;
 }
@@ -500,13 +501,13 @@ typedef enum {
 - (void)tryStartGame
 {
     self.player1 = [[User alloc] createPlayer:1];
-    self.player1.Warrior = 3;
-    self.player1.Knight = 2;
-    self.player1.Boomerang = 2;
+    self.player1.Warrior = [NSNumber numberWithInt:3];
+    self.player1.Knight = [NSNumber numberWithInt:2];
+    self.player1.Boomerang = [NSNumber numberWithInt:2];
     self.player2 = [[User alloc] createPlayer:2];
-    self.player2.Warrior = 2;
-    self.player2.Knight = 1;
-    self.player2.Boomerang = 3;
+    self.player2.Warrior = [NSNumber numberWithInt:2];
+    self.player2.Knight = [NSNumber numberWithInt:1];
+    self.player2.Boomerang = [NSNumber numberWithInt:3];
     
     if (isPlayer1 && gameState == kGameStateWaitingForStart) {
         [self setGameState:kGameStateActive];
@@ -529,11 +530,11 @@ typedef enum {
         currentPlayer = self.player2;
     }
     
-    CCLOG(@"checkUnitsAvailability I have %d warriors", currentPlayer.Warrior);
+    CCLOG(@"checkUnitsAvailability I have %d warriors", [currentPlayer.Warrior intValue]);
     
-    self.hud.warriorItem.label.string = [NSString stringWithFormat:@"Warrior (%d)", currentPlayer.Warrior];
-    self.hud.knightItem.label.string = [NSString stringWithFormat:@"Knight (%d)", currentPlayer.Knight];
-    self.hud.boomerangItem.label.string = [NSString stringWithFormat:@"Boomerang (%d)", currentPlayer.Boomerang];
+    self.hud.warriorItem.label.string = [NSString stringWithFormat:@"Warrior (%d)", [currentPlayer.Warrior intValue]];
+    self.hud.knightItem.label.string = [NSString stringWithFormat:@"Knight (%d)", [currentPlayer.Knight intValue]];
+    self.hud.boomerangItem.label.string = [NSString stringWithFormat:@"Boomerang (%d)", [currentPlayer.Boomerang intValue]];
     
     self.hud.warriorItem.isEnabled = YES;
     self.hud.knightItem.isEnabled = YES;
@@ -565,7 +566,9 @@ typedef enum {
             return nil;
         
         unit = [[Warrior alloc] unitWithLayer:self player:player];
-        currentPlayer.Warrior--;
+        int val = [currentPlayer.Warrior intValue];
+        val--;
+        currentPlayer.Warrior = [NSNumber numberWithInt:val];
         t = 'w';
     }
     else if (type == @"Knight")
@@ -574,7 +577,9 @@ typedef enum {
             return nil;
         
         unit = [[Knight alloc] unitWithLayer:self player:player];
-        currentPlayer.Knight--;
+        int val = [currentPlayer.Knight intValue];
+        val--;
+        currentPlayer.Knight = [NSNumber numberWithInt:val];
         t = 'k';
     }
     else if (type == @"Boomerang")
@@ -583,7 +588,9 @@ typedef enum {
             return nil;
 
         unit = [[Boomerang alloc] unitWithLayer:self player:player];
-        currentPlayer.Boomerang--;
+        int val = [currentPlayer.Boomerang intValue];
+        val--;
+        currentPlayer.Boomerang = [NSNumber numberWithInt:val];
         t = 'b';
     }
     

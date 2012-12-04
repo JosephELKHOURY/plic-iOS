@@ -75,14 +75,18 @@
                                            [pointView image].size.width, 
                                            [pointView image].size.height)];
 		
-		[self addSubview:titleLabel];
-        [self addSubview:distLbl];
+        if (!coordinate.isBonus)
+            [self addSubview:titleLabel];
+        
+        if (!coordinate.isBonus)
+            [self addSubview:distLbl];
         
         [self setLblDistance:distLbl];
 
 		[self addSubview:pointView];
 		[self setBackgroundColor:[UIColor clearColor]];
-        
+        if (coordinate.isBonus && coordinate.distanceFromOrigin > 500)
+            self.hidden = YES;
         
 	}
 	

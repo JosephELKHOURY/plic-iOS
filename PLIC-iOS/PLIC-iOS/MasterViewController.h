@@ -16,7 +16,7 @@
 
 @protocol MasterDelegate <NSObject>
 
--(IBAction)goJeu;
+-(IBAction)goJeuWithPlayer1:(User *)player1 Player2:(User *)player2;
 
 @end
 

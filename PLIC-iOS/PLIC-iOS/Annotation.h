@@ -2,8 +2,8 @@
 #import <MapKit/MapKit.h>
 
 typedef enum{
-	AnnotationTypeApple=0,
-    AnnotationTypeUser=1
+	AnnotationTypeUser=0,
+    AnnotationTypeBonus=1
 }AnnotationType;
 
 @interface Annotation : NSObject<MKAnnotation> {

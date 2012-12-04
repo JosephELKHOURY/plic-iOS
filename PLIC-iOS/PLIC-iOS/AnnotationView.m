@@ -18,7 +18,7 @@
 
 -(id)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier{
 	Annotation *myAnnotation = (Annotation*)annotation;
-	if ([myAnnotation annotationType]==AnnotationTypeApple) {
+	if ([myAnnotation annotationType]==AnnotationTypeUser) {
 		self=[super initWithAnnotation:myAnnotation reuseIdentifier:reuseIdentifier];
 		self.frame = CGRectMake(0, 0, kWidth, kHeight);
 		self.backgroundColor = [UIColor clearColor];
@@ -27,12 +27,12 @@
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth-2*kBorder, kWidth-2*kBorder);
 		[self addSubview:imageView];
 	}
-	else if ([myAnnotation annotationType]==AnnotationTypeUser) {
+	else if ([myAnnotation annotationType]==AnnotationTypeBonus) {
 		self=[super initWithAnnotation:myAnnotation reuseIdentifier:reuseIdentifier];
 		self.frame = CGRectMake(0, 0, kWidth, kHeight);
 		self.backgroundColor = [UIColor clearColor];
 		
-		imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"man.png"]];
+		imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bonus.png"]];
 		imageView.frame = CGRectMake(kBorder, kBorder, kWidth-2*kBorder, kWidth-2*kBorder);
 		[self addSubview:imageView];
 		

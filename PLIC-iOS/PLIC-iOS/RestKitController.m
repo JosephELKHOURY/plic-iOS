@@ -11,6 +11,7 @@
 @implementation RestKitController
 @synthesize users, bonuses, units, userInfo;
 @synthesize mapDelegate, masterDelegate;
+@synthesize fromMaster;
 
 static RestKitController* singleton = nil;
 
@@ -24,14 +25,16 @@ static RestKitController* singleton = nil;
 
 - (void)setupMappingAndRoutes
 {
-    RKObjectManager *manager = [RKObjectManager objectManagerWithBaseURL:[RKURL URLWithBaseURLString:@"http://10.41.163.35:1054/api"]];
+    RKObjectManager *manager = [RKObjectManager objectManagerWithBaseURL:[RKURL URLWithBaseURLString:@"http://192.168.0.27:1054/api"]];
     
-    RKObjectMapping* unitMapping = [RKObjectMapping mappingForClass:[Unit class]];
+    /*RKObjectMapping* unitMapping = [RKObjectMapping mappingForClass:[Unit class]];
     [unitMapping mapKeyPath:@"Type" toAttribute:@"name"];
     [unitMapping mapKeyPath:@"CurrentHP" toAttribute:@"hp"];
-    [unitMapping mapKeyPath:@"TotalHP" toAttribute:@"totalHp"];
+    [unitMapping mapKeyPath:@"TotalHP" toAttribute:@"totalHp"];*/
     
-    RKObjectMapping* userMapping = [RKObjectMapping mappingForClass:[User class]];
+    userMapping = [RKObjectMapping mappingForClass:[User class]];
+    userMapping.setDefaultValueForMissingAttributes = YES;
+    userMapping.setNilForMissingRelationships = YES;
     [userMapping mapKeyPath:@"UserId" toAttribute:@"UserId"];
     [userMapping mapKeyPath:@"UUID" toAttribute:@"UUID"];
     [userMapping mapKeyPath:@"Description" toAttribute:@"Description"];
@@ -41,110 +44,123 @@ static RestKitController* singleton = nil;
     [userMapping mapKeyPath:@"Warrior" toAttribute:@"Warrior"];
     [userMapping mapKeyPath:@"Knight" toAttribute:@"Knight"];
     [userMapping mapKeyPath:@"Boomerang" toAttribute:@"Boomerang"];
-    [userMapping mapKeyPath:@"Units" toRelationship:@"Units" withMapping:unitMapping];
+    //[userMapping mapKeyPath:@"Units" toRelationship:@"Units" withMapping:unitMapping];
+    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:userMapping forClass:[User class]];
     
-    /*RKObjectMapping* bonusMapping = [RKObjectMapping mappingForClass:[Bonus class]];
-    [bonusMapping mapKeyPath:@"description" toAttribute:@"description"];
-    [bonusMapping mapKeyPath:@"id" toAttribute:@"id"];
-    [bonusMapping mapKeyPath:@"latitude" toAttribute:@"latitude"];
-    [bonusMapping mapKeyPath:@"longitude" toAttribute:@"longitude"];*/
-    
-    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"user"];
-    //[[RKObjectManager sharedManager].mappingProvider setMapping:bonusMapping forKeyPath:@"bonus"];
+    bonusMapping = [RKObjectMapping mappingForClass:[Bonus class]];
+    bonusMapping.setDefaultValueForMissingAttributes = YES;
+    bonusMapping.setNilForMissingRelationships = YES;
+    [bonusMapping mapKeyPath:@"BonusId" toAttribute:@"BonusId"];
+    [bonusMapping mapKeyPath:@"Description" toAttribute:@"Description"];
+    [bonusMapping mapKeyPath:@"Yype" toAttribute:@"Type"];
+    [bonusMapping mapKeyPath:@"Latitude" toAttribute:@"Latitude"];
+    [bonusMapping mapKeyPath:@"Longitude" toAttribute:@"Longitude"];
+    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:bonusMapping forClass:[Bonus class]];
     
     manager.serializationMIMEType = RKMIMETypeJSON;
-    
-    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:userMapping forClass:[User class]];
-    //[[RKObjectManager sharedManager].mappingProvider setSerializationMapping:bonusMapping forClass:[Bonus class]];
+    manager.acceptMIMEType = RKMIMETypeJSON;
     
     RKObjectRouter *router = [RKObjectRouter new];
     // Define a default resource path for all unspecified HTTP verbs  
-    [router routeClass:[User class] toResourcePath:@"/users/" forMethod:RKRequestMethodPOST];
-    //[router routeClass:[User class] toResourcePath:@"/users" forMethod:RKRequestMethodGET];
-    [router routeClass:[User class] toResourcePath:@"/users/:uuid" forMethod:RKRequestMethodGET];
-    [router routeClass:[User class] toResourcePath:@"/users/:uuid" forMethod:RKRequestMethodPUT];
-    [router routeClass:[User class] toResourcePath:@"/users/:uuid" forMethod:RKRequestMethodDELETE];
-    /*[router routeClass:[Bonus class] toResourcePath:@"/bonuses/" forMethod:RKRequestMethodPOST];
-    [router routeClass:[Bonus class] toResourcePath:@"/bonuses" forMethod:RKRequestMethodGET];
-    [router routeClass:[Bonus class] toResourcePath:@"/bonuses/:id" forMethod:RKRequestMethodPUT];*/
+    [router routeClass:[User class] toResourcePath:@"/user/" forMethod:RKRequestMethodPOST];
+    [router routeClass:[User class] toResourcePath:@"/user/:uuid" forMethod:RKRequestMethodGET];
+    [router routeClass:[User class] toResourcePath:@"/user/:UserId" forMethod:RKRequestMethodPUT];
+    [router routeClass:[User class] toResourcePath:@"/user/:uuid" forMethod:RKRequestMethodDELETE];
+    [router routeClass:[Bonus class] toResourcePath:@"/bonus/" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Bonus class] toResourcePath:@"/bonus" forMethod:RKRequestMethodGET];
+    [router routeClass:[Bonus class] toResourcePath:@"/bonus/:id" forMethod:RKRequestMethodPUT];
 
     [RKObjectManager sharedManager].router = router;
 }
 
 - (void)getUsers
 {
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/users" delegate:self];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@""];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"User"];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/user" delegate:self];
 }
 
-/*- (void)getBonuses
+- (void)getBonuses
 {
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/bonuses" delegate:self];
-}*/
+    [[RKObjectManager sharedManager].mappingProvider setMapping:bonusMapping forKeyPath:@""];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:bonusMapping forKeyPath:@"Bonus"];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/bonus" delegate:self];
+}
 
 - (void)getUser:(NSString *)uuid
 {
-    NSString *str = [NSString stringWithFormat:@"/users/%@", uuid];
+    NSLog(@"Getting user with uuid %@", uuid);
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@""];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"User"];
+    NSString *str = [NSString stringWithFormat:@"/user/%@", uuid];
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:str delegate:self];
+    currentUUID = uuid;
 }
-
-
 
 - (void)createUser:(NSObject *)user
 {
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@""];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"User"];
     RKObjectRouter *router = [RKObjectRouter new];
-    [router routeClass:[User class] toResourcePath:@"/users/" forMethod:RKRequestMethodPOST];
+    [router routeClass:[User class] toResourcePath:@"/user/" forMethod:RKRequestMethodPOST];
     [[RKObjectManager sharedManager] postObject:user delegate:self]; 
     [RKObjectManager sharedManager].router = router;
-    [masterDelegate getPlayerFromServer];
-}
-
-- (void)markBonusAsTaken:(NSObject *)bonus
-{
-    //TODO
 }
 
 - (void)updateUser:(NSObject *)user
 {
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@""];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"User"];
     RKObjectRouter *router = [RKObjectRouter new];
-    [router routeClass:[User class] toResourcePath:@"/users/:uuid" forMethod:RKRequestMethodPOST];
-    [[RKObjectManager sharedManager] postObject:user delegate:self]; 
+    [router routeClass:[User class] toResourcePath:@"/user/:UserId" forMethod:RKRequestMethodPUT];
+    [[RKObjectManager sharedManager] putObject:user delegate:self];
     [RKObjectManager sharedManager].router = router;
 }
 
 - (void)deleteUser:(NSObject *)user
 {
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@""];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"User"];
     [[RKObjectManager sharedManager] putObject:user delegate:self];
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
 {
-    NSLog(@"Error: %@", [error localizedDescription]);
-    [masterDelegate pushToRegister];
+    NSLog(@"Error: %@", [error localizedDescription]);       
 }
 
 - (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response 
 {
     NSLog(@"response code: %d", [response statusCode]);
+    NSLog(@"response type: %@", [response contentType]);
+    NSLog(@"response: %@", [response bodyAsString]);
+    if ([response statusCode] == 500)
+        [masterDelegate pushToRegister];
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
     NSLog(@"objects[%d]", [objects count]);
-    if ([objectLoader wasSentToResourcePath:@"/users"]) 
+
+    if ([objectLoader wasSentToResourcePath:@"/user/" method:RKRequestMethodPOST])
     {
-        NSLog(@"objects[%d]", [objects count]);
+        [masterDelegate getPlayerFromServer];
+    }
+    else if ([objectLoader wasSentToResourcePath:@"/user"])
+    {
+        NSLog(@"users[%d]", [objects count]);
         users = [NSMutableArray arrayWithArray:objects];
         [mapDelegate addUsers];
     }
-    else if ([objectLoader wasSentToResourcePath:@"/bonuses"])
+    else if ([objectLoader wasSentToResourcePath:@"/bonus"])
     {
-        NSLog(@"objects[%d]", [objects count]);
+        NSLog(@"bonuses[%d]", [objects count]);
         bonuses = [NSMutableArray arrayWithArray:objects];
         [mapDelegate addBonuses];
     }
-    else if ([objectLoader wasSentToResourcePath:@"/users/:uuid"])
+    else if ([objectLoader wasSentToResourcePath:[NSString stringWithFormat:@"/user/%@", currentUUID]])
     {
-        NSLog(@"objects[%d]", [objects count]);
+        NSLog(@"user[%d]", [objects count]);
         NSLog(@"%@", objects);
         userInfo = [NSMutableArray arrayWithArray:objects];
         [masterDelegate setPlayer];

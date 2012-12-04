@@ -23,13 +23,14 @@
 - (id)createPlayer:(int)playerId
 {
     self.units = [[NSMutableArray alloc] init];
-    
     return self;
 }
 
 
 - (void)addUnit:(Unit *)unit
 {
+    if (!self.Units)
+        self.Units = [[NSMutableArray alloc] init];
     if (unit != nil)
         [self.Units addObject:unit];
 }

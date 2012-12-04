@@ -19,11 +19,37 @@
 @synthesize rest;
 @synthesize delegate;
 
+- (void)loadView
+{
+	[super loadView];
+	pointEntries = [[NSMutableArray alloc] init];
+	instructionsEntries = [[NSMutableArray alloc] init];
+    locationArray = [[NSMutableArray alloc] init];
+	
+	locationController = [[MyCLController alloc] init];
+	locationController.delegate = self;
+	[locationController.locationManager startUpdatingLocation];
+    
+    rest = [RestKitController getInstance];
+    self.rest.mapDelegate = self;
+    [rest setupMappingAndRoutes];
+    [self.rest getUsers];
+    [self.rest getBonuses];
+	[self loadOurAnnotations];
+}
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+}
+
+
 -(void)loadOurAnnotations
-{	
+{
+    NSLog(@"loading annotations");
 	CLLocationCoordinate2D workingCoordinate;
     
-    for (User *u in self.rest.users)
+    for (User *u in self.rest.userInfo)
     {
         if ([u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
         {
@@ -43,18 +69,7 @@
             u = restUser;
             u.latitude = [NSString stringWithFormat:@"%f", workingCoordinate.latitude];
             u.longitude = [NSString stringWithFormat:@"%f", workingCoordinate.longitude];
-            //u.username = @"Joseph";
-            //u.description = @"EPIMAC iPad";
             [rest updateUser:u];
-        }
-        else 
-        {
-            u.UUID = [[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"];
-            u.username = @"Joseph";
-            u.description = @"EPIMAC iPad";
-            u.latitude = [NSString stringWithFormat:@"%f", workingCoordinate.latitude];
-            u.longitude = [NSString stringWithFormat:@"%f", workingCoordinate.longitude];
-            [rest createUser:u];
         }
 		user = [[Annotation alloc] initWithCoordinate:workingCoordinate];
 		[user setTitle:u.Username];
@@ -65,29 +80,38 @@
 
 -(void)addUsers
 {
-    Annotation *userAnnotation;
-    CLLocationCoordinate2D workingCoordinate;
-    
-    ARGeoCoordinate *tempCoordinate;
-    CLLocation *tempLocation;
-    
-    for (User *u in self.rest.users)
+    @try
     {
-        if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
+        NSLog(@"adding users to the map");
+        Annotation *userAnnotation;
+        CLLocationCoordinate2D workingCoordinate;
+        
+        ARGeoCoordinate *tempCoordinate;
+        CLLocation *tempLocation;
+        
+        for (User *u in self.rest.users)
         {
-            workingCoordinate.latitude = [u.Latitude doubleValue];
-            workingCoordinate.longitude = [u.Longitude doubleValue];
-            userAnnotation = [[Annotation alloc] initWithCoordinate:workingCoordinate];
-            [userAnnotation setTitle:u.Username];
-            [userAnnotation setSubtitle:@""];
-            [userAnnotation setAnnotationType:AnnotationTypeApple];
-            [mapView addAnnotation:userAnnotation];
-            tempLocation = [[CLLocation alloc] initWithLatitude:workingCoordinate.latitude longitude:workingCoordinate.longitude];
-            tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:u.Username locationDescription:u.Description];
-            [locationArray addObject:tempCoordinate];
+            if (![u.UUID isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"UUID"]])
+            {
+                workingCoordinate.latitude = [u.Latitude doubleValue];
+                workingCoordinate.longitude = [u.Longitude doubleValue];
+                userAnnotation = [[Annotation alloc] initWithCoordinate:workingCoordinate];
+                [userAnnotation setTitle:u.Username];
+                [userAnnotation setSubtitle:@""];
+                [userAnnotation setAnnotationType:AnnotationTypeUser];
+                [mapView addAnnotation:userAnnotation];
+                tempLocation = [[CLLocation alloc] initWithLatitude:workingCoordinate.latitude longitude:workingCoordinate.longitude];
+                tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:u.Username locationDescription:u.Description];
+                tempCoordinate.user = u;
+                [locationArray addObject:tempCoordinate];
+            }
         }
+
     }
-    
+    @catch (NSException *exception)
+    {
+        
+    }
     /*workingCoordinate.latitude = 48.860339;
     workingCoordinate.longitude = 2.337599;
     player = [[Annotation alloc] initWithCoordinate:workingCoordinate];
@@ -115,48 +139,33 @@
 
 -(void)addBonuses
 {
-    Annotation *bonusAnnotation;
-    CLLocationCoordinate2D workingCoordinate;
-    
-    ARGeoCoordinate *tempCoordinate;
-    CLLocation *tempLocation;
-    
-    for (Bonus *b in self.rest.bonuses)
+    @try
     {
-        workingCoordinate.latitude = [b.latitude doubleValue];
-        workingCoordinate.longitude = [b.longitude doubleValue];
-        bonusAnnotation = [[Annotation alloc] initWithCoordinate:workingCoordinate];
-        [bonusAnnotation setTitle:@"Bonus"];
-        [bonusAnnotation setSubtitle:b.description];
-        [bonusAnnotation setAnnotationType:AnnotationTypeApple];
-        [mapView addAnnotation:bonusAnnotation];
-        tempLocation = [[CLLocation alloc] initWithLatitude:workingCoordinate.latitude longitude:workingCoordinate.longitude];
-        tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:@"Bonus" locationDescription:b.description];
-        [locationArray addObject:tempCoordinate];
+        NSLog(@"adding bonuses to the map");
+        Annotation *bonusAnnotation;
+        CLLocationCoordinate2D workingCoordinate;
+        
+        ARGeoCoordinate *tempCoordinate;
+        CLLocation *tempLocation;
+        
+        for (Bonus *b in self.rest.bonuses)
+        {
+            workingCoordinate.latitude = [b.Latitude doubleValue];
+            workingCoordinate.longitude = [b.Longitude doubleValue];
+            bonusAnnotation = [[Annotation alloc] initWithCoordinate:workingCoordinate];
+            [bonusAnnotation setTitle:@"Bonus"];
+            [bonusAnnotation setSubtitle:b.Description];
+            [bonusAnnotation setAnnotationType:AnnotationTypeBonus];
+            [mapView addAnnotation:bonusAnnotation];
+            tempLocation = [[CLLocation alloc] initWithLatitude:workingCoordinate.latitude longitude:workingCoordinate.longitude];
+            tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation locationTitle:@"Bonus" locationDescription:b.Description];
+            tempCoordinate.isBonus = YES;
+            [locationArray addObject:tempCoordinate];
+        }
     }
-}
-
-- (void)loadView 
-{
-	[super loadView];
-	pointEntries = [[NSMutableArray alloc] init];
-	instructionsEntries = [[NSMutableArray alloc] init];
-    locationArray = [[NSMutableArray alloc] init];
-	
-	locationController = [[MyCLController alloc] init];
-	locationController.delegate = self;
-	[locationController.locationManager startUpdatingLocation];
-    
-    rest = [RestKitController getInstance];
-    self.rest.mapDelegate = self;
-    [rest setupMappingAndRoutes];
-    [self.rest getUsers];
-	[self loadOurAnnotations];
-}
-
-- (void)viewDidLoad
-{
-	[super viewDidLoad];
+    @catch (NSException *exception) {
+        
+    }
 }
 
 -(void) locationClicked:(ARGeoCoordinate *) coordinate 
@@ -197,7 +206,7 @@
         if (!coordinate.isBonus)
             lblDescriptionArmee.text = @"Son armée est plus petite que la vôtre";
         else
-            lblDescriptionArmee.text = @"Collectionne des bonus pour gagner des points HP";
+            lblDescriptionArmee.text = @"Collecte des bonus pour gagner des points HP ou gagner des unités";
         [infovc addSubview:lblDescriptionArmee];
         
         UIButton *closeButton = [[UIButton alloc] init];
@@ -220,7 +229,7 @@
         }
         else
         {
-            [challengeButton setImage:[UIImage imageNamed:@"button_challenge.png"] forState:UIControlStateNormal];
+            [challengeButton setImage:[UIImage imageNamed:@"button_collect.png"] forState:UIControlStateNormal];
             [challengeButton addTarget:self action:@selector(collectButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         }
         [infovc addSubview:challengeButton];
@@ -228,7 +237,7 @@
         //[[appDelegate window] addSubview:[infovc view]];
         [cameraViewController.view addSubview:infovc];
         
-        if ([coordinate distanceFromOrigin] > 1000)
+        if (([coordinate distanceFromOrigin] > 1000 && !coordinate.isBonus) || ([coordinate distanceFromOrigin] > 500 && coordinate.isBonus))
             challengeButton.enabled = NO;
         
         [self setInfoView:infovc];
@@ -241,7 +250,7 @@
     infoView = nil;
 }
 
-- (void)setPlayer
+/*- (void)setPlayer
 {
     player = [[User alloc] createPlayer:1];
     for (User *p in self.rest.userInfo)
@@ -259,11 +268,11 @@
     player.knightAvgLife = 16;
     player.boomerangAvgLife = 10;
     NSLog(@"setPlayer: Done");
-}
+}*/
 
 - (IBAction)challengeButtonClicked:(id)sender
 {
-    [self setPlayer];
+    //[self setPlayer];
     //[self dismissModalViewControllerAnimated:YES];
     //self.cameraViewController = nil;
     //[self.navigationController popToRootViewControllerAnimated:YES];
@@ -274,7 +283,7 @@
     //[self.view insertSubview:glView atIndex:10];
     [[CCDirector sharedDirector] setView:glView];
     [[CCDirector sharedDirector] runWithScene:[Map scene:player]];*/
-    [delegate goJeu];
+    [delegate goJeuWithPlayer1:nil Player2:nil];
 }
 
 - (IBAction)collectButtonClicked:(id)sender
@@ -381,23 +390,18 @@
     [mapView addAnnotation:user];
     //[mapView setCenterCoordinate:workingCoordinate];
     
-    counter++;
+    /*counter++;
     if (((int)roundf(user.coordinate.latitude) == 49) && ((int)roundf(user.coordinate.longitude) == 2) && (counter == 0))
     {
         UIAlertView *msg = [[UIAlertView alloc] initWithTitle:@"Alerte!" message:@"Vous etes dans une region importante! Vous pouvez soit declencher la mission soit fuir!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [msg show];
         counter++;
-    }
+    }*/
 }
 
 - (void)locationError:(NSError *)error 
 {
 	NSLog(@"error");
-}
-
-
--(void)run:(id)identifier
-{
 }
 
 - (void)didReceiveMemoryWarning {

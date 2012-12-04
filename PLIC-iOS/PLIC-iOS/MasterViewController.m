@@ -64,22 +64,18 @@
     [self stopLoading];
     for (User *p in self.rest.userInfo)
     {
-        NSLog(@"%@", p);
         player.Warrior = p.Warrior;
         player.Knight = p.Knight;
         player.Boomerang = p.Boomerang;
     }
-    //JUST FOR TESTING WITHOUT A SERVER
-    player.Warrior = 3;
-    player.Knight = 2;
-    player.Boomerang = 2;
+    //DATA NON EXISTANT ON SERVER
     player.warriorAvgLife = 19.5;
     player.knightAvgLife = 16;
     player.boomerangAvgLife = 10;
     NSLog(@"setPlayer: Done");
 }
 
--(IBAction)goJeu
+-(IBAction)goJeuWithPlayer1:(User *)player1 Player2:(User *)player2
 {
     /*GameViewController *v = [[GameViewController alloc] initWithNibName:@"GameView" bundle:nil];
     [self.navigationController pushViewController:v animated:YES];*/
@@ -87,7 +83,7 @@
 								   pixelFormat:kEAGLColorFormatRGB565];
     [self.view insertSubview:glView atIndex:10];
     [[CCDirector sharedDirector] setView:glView];
-    [[CCDirector sharedDirector] runWithScene:[Map scene:player]];
+    [[CCDirector sharedDirector] runWithScene:[Map sceneWithPlayer1:player1 Player2:player2]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

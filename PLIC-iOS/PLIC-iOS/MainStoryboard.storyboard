@@ -65,7 +65,7 @@
                                     <segue destination="bJg-g6-uEb" kind="push" identifier="pushToMap" id="vR1-5k-VlP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kt2-TU-1Wb">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kt2-TU-1Wb">
                                 <rect key="frame" x="394" y="9" width="72" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -77,7 +77,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="goJeu" destination="0BQ-bx-dX0" eventType="touchUpInside" id="ukQ-CI-HJ5"/>
+                                    <action selector="goJeuWithPlayer1:Player2:" destination="0BQ-bx-dX0" eventType="touchUpInside" id="NPy-s6-GDL"/>
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mSo-1O-Z27">
@@ -728,9 +728,6 @@
                 <relationship kind="outlet" name="qteKnight" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="qteWarrior" candidateClass="UILabel"/>
             </relationships>
-        </class>
-        <class className="FBProfilePictureView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBProfilePictureView.h"/>
         </class>
         <class className="FacebookShareViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FacebookShareViewController.h"/>

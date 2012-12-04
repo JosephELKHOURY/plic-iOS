@@ -28,9 +28,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.qteWarrior.text = [NSString stringWithFormat:@"Qté:%d", user.Warrior];
-    self.qteKnight.text = [NSString stringWithFormat:@"Qté:%d", user.Knight];
-    self.qteBommerang.text = [NSString stringWithFormat:@"Qté:%d", user.Boomerang];
+    self.qteWarrior.text = [NSString stringWithFormat:@"Qté:%d", [user.Warrior intValue]];
+    self.qteKnight.text = [NSString stringWithFormat:@"Qté:%d", [user.Knight intValue]];
+    self.qteBommerang.text = [NSString stringWithFormat:@"Qté:%d", [user.Boomerang intValue]];
     self.lifeWarrior.text = [NSString stringWithFormat:@"Vie moyenne:%.01f/20", user.warriorAvgLife];
     self.lifeKnight.text = [NSString stringWithFormat:@"Vie moyenne:%.01f/16", user.knightAvgLife];
     self.lifeBoomerang.text = [NSString stringWithFormat:@"Vie moyenne:%.01f/10", user.boomerangAvgLife];

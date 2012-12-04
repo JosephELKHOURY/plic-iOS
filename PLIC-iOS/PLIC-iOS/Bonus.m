@@ -10,9 +10,10 @@
 
 @implementation Bonus
 
-@synthesize id;
-@synthesize description;
-@synthesize latitude;
-@synthesize longitude;
+@synthesize BonusId;
+@synthesize Description;
+@synthesize Type;
+@synthesize Latitude;
+@synthesize Longitude;
 
 @end

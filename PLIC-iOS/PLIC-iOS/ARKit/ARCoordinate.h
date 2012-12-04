@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "User.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * (180.0/M_PI))
@@ -21,6 +22,7 @@
     NSString *description;
 	NSString *subtitle;
     bool isBonus;
+    User *user;
 }
 
 - (NSUInteger) hash;
@@ -33,6 +35,7 @@
 @property (nonatomic, strong)	NSString *description;
 @property (nonatomic, copy)		NSString *subtitle;
 @property (nonatomic) bool isBonus;
+@property (nonatomic, strong) User *user;
 @property (nonatomic) double	radialDistance;
 @property (nonatomic) double	inclination;
 @property (nonatomic) double	azimuth;

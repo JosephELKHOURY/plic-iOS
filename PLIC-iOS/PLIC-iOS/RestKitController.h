@@ -34,6 +34,10 @@
 {
     id<MapControllerDelegate> mapDelegate;
     id<MasterControllerDelegate> masterDelegate;
+    NSString *currentUUID;
+    bool fromMaster;
+    RKObjectMapping* userMapping;
+    RKObjectMapping* bonusMapping;
 }
 
 @property (strong, nonatomic) NSMutableArray *users;
@@ -42,10 +46,12 @@
 @property (strong, nonatomic) NSMutableArray *userInfo;
 @property (strong, nonatomic) id<MapControllerDelegate> mapDelegate;
 @property (strong, nonatomic) id<MasterControllerDelegate> masterDelegate;
+@property (nonatomic) bool fromMaster;
 
 + (RestKitController*)getInstance;
 - (void)setupMappingAndRoutes;
 - (void)getUsers;
+- (void)getBonuses;
 - (void)getUnits;
 - (void)getUser:(NSString *)uuid;
 - (void)createUser:(NSObject *)user;

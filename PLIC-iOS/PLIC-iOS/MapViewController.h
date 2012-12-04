@@ -39,6 +39,8 @@
     User *player;
     id<MasterDelegate> delegate;
     NSMutableArray *locationArray;
+    User *p1;
+    User *p2;
 }
 @property(nonatomic)	IBOutlet MKMapView *mapView;
 @property(nonatomic)	NSString *currentLatitude;
@@ -48,9 +50,6 @@
 @property (strong, nonatomic) RestKitController *rest;
 @property (nonatomic) id<MasterDelegate> delegate;
 
-
--(void)getRouteInformationWithSourceLatitude:(double)source_latitude SourceLongitude:(double)source_longitude 
-						 DestinationLatitude:(NSString *)destination_latitude DestinationLongitude:(NSString *)destination_longitude;
 
 -(IBAction)openCamera:(id)sender;
 

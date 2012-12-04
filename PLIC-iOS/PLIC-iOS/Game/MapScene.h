@@ -128,8 +128,7 @@ typedef struct {
 @property (nonatomic, retain) CCLabelTTF *attackEffect;
 @property (nonatomic, retain) CCLabelTTF *status;
 
-+ (id) scene:(User *)player;
-- (void)setPlayerPosition:(CGPoint)position;
++(id) sceneWithPlayer1:(User *)player1 Player2:(User *)player2;
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
 - (CGPoint)positionForTileCoord:(CGPoint)tileCoord;
 - (void)selectTilesAroundUnit:(Unit *)unit;

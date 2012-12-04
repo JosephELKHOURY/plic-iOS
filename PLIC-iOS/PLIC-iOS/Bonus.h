@@ -10,9 +10,10 @@
 
 @interface Bonus : NSObject
 
-@property (strong, nonatomic) NSNumber *id;
-@property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSString *latitude;
-@property (strong, nonatomic) NSString *longitude;
+@property (strong, nonatomic) NSNumber *BonusId;
+@property (strong, nonatomic) NSString *Description;
+@property (strong, nonatomic) NSString *Type;
+@property (strong, nonatomic) NSString *Latitude;
+@property (strong, nonatomic) NSString *Longitude;
 
 @end
